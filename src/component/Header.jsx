@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import "../style/Header.css";
 import logo from "../assets/hanket_image.ico";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle, FaShoppingCart, FaSearch } from "react-icons/fa";
 
 const Header = () => {
@@ -123,29 +123,29 @@ const Header = () => {
         {/* NAV LINKS */}
         <ul className={open ? "header-links header-active" : "header-links"}>
           <li>
-            <a className="header-link" href="/">
+            <Link className="header-link" to="/">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="header-link" href="/products">
+            <Link className="header-link" to="/products">
               Products
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="header-link" href="/about">
+            <Link className="header-link" to="/about">
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="header-link" href="/services">
+            <Link className="header-link" to="/services">
               Services
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="header-link" href="/contact">
+            <Link className="header-link" to="/contact">
               Contact
-            </a>
+            </Link>
           </li>
 
           {/* SEARCH BAR */}
