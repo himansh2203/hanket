@@ -108,7 +108,7 @@
 /* Responsive */
 @media (max-width: 600px) {
   .pcard-container {
-    width: 100%;
+    
   }
   .pcard-img-box {
     height: 200px;

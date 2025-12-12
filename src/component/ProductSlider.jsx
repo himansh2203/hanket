@@ -58,7 +58,7 @@ const ProductSlider = () => {
           rating: item.rating?.rate || 4.5,
           isNew: Math.random() < 0.3, // randomly mark some products as new
         }));
-        setProducts(formatted);
+        setProducts(formatted.slice(0, 10));
       } catch (err) {
         console.error("Failed to fetch products:", err);
       } finally {
