@@ -1,0 +1,226 @@
+/* MAIN PREMIUM HEADER */
+.premium-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1200;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* CONTAINER */
+.header-container {
+  max-width: 1300px;
+  margin: auto;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+}
+
+.header-brand {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff4d6d, #ff758c);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* NAV LINKS */
+.header-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  align-items: center;
+}
+
+.header-link {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: #222;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+/* Underline Animation */
+.header-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  bottom: -3px;
+  left: 0;
+  background: #ff4d6d;
+  transition: 0.3s ease;
+}
+
+.header-link:hover::after {
+  width: 100%;
+}
+
+.header-link:hover {
+  color: #ff4d6d;
+}
+
+/* SEARCH BAR */
+.header-search-form {
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  transition: 0.3s ease;
+}
+
+.header-search-input {
+  padding: 6px 12px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.header-search-btn {
+  background: #ff4d6d;
+  border: none;
+  color: #fff;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.header-search-btn:hover {
+  background: #ff758c;
+}
+
+/* CTA BUTTONS */
+.header-btn-group {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.header-btn {
+  padding: 10px 22px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-btn {
+  background: transparent;
+  border: 2px solid #ff4d6d;
+  color: #ff4d6d;
+}
+.login-btn:hover {
+  background: #ff4d6d;
+  color: #fff;
+}
+
+.signup-btn {
+  background: linear-gradient(90deg, #ff4d6d, #ff758c);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 77, 109, 0.4);
+}
+.signup-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* PROFILE/CART ICON BUTTONS */
+.header-icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ff4d6d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-icon-btn:hover {
+  color: #ff758c;
+}
+
+/* HAMBURGER */
+.header-hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.h-line {
+  width: 30px;
+  height: 3px;
+  background: #222;
+  margin: 5px 0;
+  border-radius: 10px;
+  transition: 0.4s ease;
+}
+
+/* Cross animation */
+.h1 {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+.h2 {
+  opacity: 0;
+}
+.h3 {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 950px) {
+  .header-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 250px;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 20px;
+    gap: 25px;
+    transition: 0.3s ease;
+    z-index: 1100;
+  }
+
+  .header-links.header-active {
+    left: 0;
+  }
+
+  .header-hamburger {
+    display: block;
+  }
+
+  .header-btn-group {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header-brand {
+    font-size: 24px;
+  }
+}

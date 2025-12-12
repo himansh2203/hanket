@@ -1,0 +1,157 @@
+/* ---------------- SIGNUP WRAPPER ---------------- */
+.sp-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px;
+  
+}
+
+/* ---------------- SIGNUP CARD ---------------- */
+.sp-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 45px 36px;
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 45px rgba(255, 77, 109, 0.35);
+
+  animation: spFadeUp 0.9s ease;
+}
+
+/* ---------------- TITLES ---------------- */
+.sp-title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+
+  background: linear-gradient(90deg, #ff4d6d, #ff758c);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.sp-sub {
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 28px;
+  opacity: 0.75;
+}
+
+/* ---------------- INPUT FIELD ---------------- */
+.sp-input-box {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.sp-input-box input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.6);
+  transition: 0.3s ease;
+  font-size: 16px;
+}
+
+.sp-input-box input:focus {
+  outline: none;
+  background: #fff;
+  border: 2px solid #ff4d6d;
+}
+
+.sp-input-box label {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  color: #444;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+/* Floating Label */
+.sp-input-box input:focus + label,
+.sp-input-box input:valid + label {
+  top: -6px;
+  left: 12px;
+  font-size: 13px;
+  background: #fff;
+  padding: 0 4px;
+  border-radius: 6px;
+  color: #ff4d6d;
+}
+
+/* ---------------- BUTTON ---------------- */
+.sp-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: 600;
+
+  background: linear-gradient(90deg, #ff4d6d, #ff758c);
+  color: white;
+
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+
+  box-shadow: 0 6px 16px rgba(255, 77, 109, 0.35);
+  transition: 0.3s ease;
+}
+
+.sp-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------------- REDIRECT LINK ---------------- */
+.sp-login-redirect {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 15px;
+}
+
+.sp-login-redirect a {
+  color: #ff4d6d;
+  font-weight: 600;
+}
+
+/* ---------------- ANIMATION ---------------- */
+@keyframes spFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 900px) {
+  .sp-card {
+    padding: 40px 32px;
+  }
+  .sp-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sp-card {
+    padding: 32px 24px;
+    border-radius: 18px;
+  }
+  .sp-title {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 420px) {
+  .sp-card {
+    padding: 28px 18px;
+  }
+}

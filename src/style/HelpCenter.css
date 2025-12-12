@@ -1,0 +1,134 @@
+/* ROOT */
+.phc-root {
+  font-family: "Poppins", sans-serif;
+  background: #fdfdfd;
+  padding: 40px 20px;
+}
+
+/* HERO */
+.phc-hero {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.phc-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #111;
+}
+
+.phc-sub {
+  margin-top: 10px;
+  font-size: 17px;
+  color: #666;
+}
+
+/* SEARCH BAR */
+.phc-search-box {
+  margin: 25px auto 0;
+  width: 60%;
+  max-width: 600px;
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+}
+
+.phc-search-input {
+  flex: 1;
+  padding: 14px 16px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.phc-search-btn {
+  padding: 14px 22px;
+  background: #ff007f;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.phc-search-btn:hover {
+  background: #e60072;
+}
+
+/* CATEGORY GRID */
+.phc-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 40px;
+}
+
+/* CATEGORY CARD */
+.phc-card {
+  padding: 28px 22px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eee;
+  transition: 0.3s ease;
+  text-align: left;
+}
+
+.phc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 35px rgba(255, 0, 128, 0.15);
+  border-color: #ff0080;
+}
+
+.phc-icon {
+  font-size: 40px;
+  margin-bottom: 14px;
+}
+
+.phc-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
+}
+
+.phc-card-desc {
+  font-size: 15px;
+  color: #555;
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+.phc-card-btn {
+  margin-top: 16px;
+  padding: 10px 14px;
+  background: #ff007f15;
+  border: none;
+  color: #ff007f;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.phc-card-btn:hover {
+  background: #ff007f25;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .phc-title {
+    font-size: 32px;
+  }
+
+  .phc-search-box {
+    width: 90%;
+  }
+}

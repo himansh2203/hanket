@@ -1,0 +1,93 @@
+/* ============================================
+   PREMIUM SERVICES PAGE (No conflict guaranteed)
+   ============================================ */
+
+.sv-root {
+  --sv-primary: #ff4d6d;
+  --sv-secondary: #ff758c;
+  --sv-bg1: #ffe0e8;
+  --sv-bg2: #d7faff;
+
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, var(--sv-bg1), var(--sv-bg2));
+  padding: 50px 24px;
+}
+
+/* ================= HERO SECTION ================= */
+
+.sv-hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sv-title {
+  font-size: 42px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--sv-primary), var(--sv-secondary));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.sv-sub {
+  margin-top: 10px;
+  font-size: 16px;
+  color: rgba(20, 33, 61, 0.7);
+}
+
+/* ================= SERVICES GRID ================= */
+
+.sv-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px 0;
+}
+
+/* ================= SERVICE CARD ================= */
+
+.sv-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.sv-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(255, 77, 109, 0.25);
+}
+
+/* ICON */
+.sv-icon-box {
+  font-size: 45px;
+  margin-bottom: 18px;
+}
+
+/* TITLE */
+.sv-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #112233;
+  margin-bottom: 10px;
+}
+
+/* DESCRIPTION */
+.sv-card-desc {
+  font-size: 15px;
+  color: rgba(20, 33, 61, 0.7);
+  line-height: 1.6;
+}
+
+/* ================== RESPONSIVE ================== */
+
+@media (max-width: 768px) {
+  .sv-title {
+    font-size: 34px;
+  }
+}

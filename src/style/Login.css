@@ -1,0 +1,165 @@
+/* ---------------- LOGIN PAGE WRAPPER ---------------- */
+.lp-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  min-height: 100vh;
+  
+}
+
+/* ---------------- LOGIN CARD ---------------- */
+.lp-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 35px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 40px rgba(255, 95, 135, 0.35);
+  animation: lpFadeUp 0.9s ease;
+}
+
+/* ---------------- TITLES ---------------- */
+.lp-title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(90deg, #ff4d6d, #ff758c);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.lp-sub {
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 30px;
+  opacity: 0.7;
+}
+
+/* ---------------- INPUTS ---------------- */
+.lp-input-box {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.lp-input-box input {
+  width: 100%;
+  padding: 14px 15px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.55);
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+.lp-input-box input:focus {
+  outline: none;
+  border: 2px solid #ff4d6d;
+  background: #fff;
+}
+
+.lp-input-box label {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555;
+  transition: 0.3s ease;
+}
+
+/* Floating Label */
+.lp-input-box input:focus + label,
+.lp-input-box input:valid + label {
+  top: -6px;
+  left: 12px;
+  font-size: 13px;
+  padding: 0 4px;
+  background: #fff;
+  border-radius: 6px;
+  color: #ff4d6d;
+}
+
+/* ---------------- BUTTON ---------------- */
+.lp-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #ff4d6d, #ff758c);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(255, 77, 109, 0.4);
+  transition: 0.3s ease;
+}
+
+.lp-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------------- EXTRA LINKS ---------------- */
+.lp-forgot {
+  display: block;
+  text-align: right;
+  margin-top: 12px;
+  color: #333;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.lp-forgot:hover {
+  color: #ff4d6d;
+}
+
+.lp-signup {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 15px;
+}
+
+.lp-signup a {
+  color: #ff4d6d;
+  font-weight: 600;
+}
+
+/* ---------------- ANIMATION ---------------- */
+@keyframes lpFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 900px) {
+  .lp-card {
+    padding: 35px 30px;
+  }
+  .lp-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .lp-card {
+    padding: 30px 22px;
+    border-radius: 16px;
+  }
+  .lp-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .lp-card {
+    padding: 25px 18px;
+  }
+}

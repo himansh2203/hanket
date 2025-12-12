@@ -1,0 +1,94 @@
+/* ROOT */
+.pf-root {
+  font-family: "Poppins", sans-serif;
+  padding: 40px 20px;
+  background: #fafafa;
+}
+
+/* HERO */
+.pf-hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pf-title {
+  font-size: 38px;
+  font-weight: 700;
+  color: #111;
+}
+
+.pf-sub {
+  font-size: 16px;
+  color: #555;
+  margin-top: 8px;
+}
+
+/* FAQ CONTAINER */
+.pf-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* EACH ITEM */
+.pf-item {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+/* OPEN ITEM HIGHLIGHT */
+.pf-open {
+  border-color: #ff0077;
+  box-shadow: 0 6px 25px rgba(255, 0, 119, 0.15);
+}
+
+/* QUESTION */
+.pf-question {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #222;
+}
+
+.pf-icon {
+  font-size: 24px;
+  color: #ff0077;
+  transition: 0.3s ease;
+}
+
+/* ANSWER */
+.pf-answer-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.pf-open .pf-answer-wrapper {
+  max-height: 200px;
+}
+
+.pf-answer {
+  margin-top: 12px;
+  color: #444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .pf-title {
+    font-size: 30px;
+  }
+  .pf-item {
+    padding: 16px;
+  }
+}

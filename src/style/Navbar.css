@@ -1,0 +1,187 @@
+/* ---------------- PREMIUM NAVBAR ---------------- */
+.premium-nav {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  /* Glassmorphism Style */
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* NAVBAR CONTAINER */
+.nav-container {
+  max-width: 1250px;
+  margin: auto;
+  padding: 16px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---------------- LOGO ---------------- */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.brand-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 1px;
+}
+
+/* ---------------- LINK STYLES ---------------- */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 3px;
+  color: #111;
+  transition: all 0.3s ease;
+}
+
+/* Hover underline animation */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2.5px;
+  background: #ff4d6d;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Hover Color */
+.nav-link:hover {
+  color: #ff4d6d;
+}
+
+/* ---------------- HAMBURGER ---------------- */
+.nav-hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.line {
+  width: 30px;
+  height: 3px;
+  background: #111;
+  margin: 5px 0;
+  border-radius: 10px;
+  transition: 0.4s ease;
+}
+
+/* Hamburger Cross Animation */
+.line1 {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+.line2 {
+  opacity: 0;
+}
+.line3 {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ================================================================= */
+/* ======================= TABLET RESPONSIVE ======================= */
+/* ================================================================= */
+
+@media (max-width: 1024px) {
+  .nav-container {
+    padding: 14px 20px;
+  }
+
+  .nav-links {
+    gap: 30px;
+  }
+
+  .brand-text {
+    font-size: 24px;
+  }
+
+  .logo-img {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ================================================================= */
+/* ======================= MOBILE RESPONSIVE ======================= */
+/* ================================================================= */
+
+@media (max-width: 768px) {
+  /* Hide Desktop Links */
+  .nav-links {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 0;
+    overflow: hidden;
+    gap: 25px;
+    padding: 0;
+    transition: 0.4s ease-in-out;
+  }
+
+  .nav-open {
+    height: 250px;
+    padding: 25px 0;
+  }
+
+  .nav-hamburger {
+    display: block;
+  }
+
+  .nav-link {
+    font-size: 17px;
+  }
+}
+
+/* ================================================================= */
+/* ======================= SMALL MOBILE ============================ */
+/* ================================================================= */
+
+@media (max-width: 480px) {
+  .brand-text {
+    font-size: 20px;
+  }
+
+  .logo-img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .nav-link {
+    font-size: 16px;
+  }
+}
