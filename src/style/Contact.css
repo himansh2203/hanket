@@ -37,7 +37,7 @@
 
 .ct-container {
   display: flex;
-  align-items: flex-start;
+  /* align-items: flex-start; */
   justify-content: center;
   max-width: 1200px;
   margin: auto;
