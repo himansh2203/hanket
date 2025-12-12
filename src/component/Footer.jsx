@@ -1,6 +1,7 @@
 import React from "react";
 import "../style/Footer.css";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,45 +16,48 @@ const Footer = () => {
           </p>
         </div>
 
+        {/* -------- QUICK LINKS -------- */}
         <div className="footer-links">
           <h4>Quick Links</h4>
           <ul>
             <li>
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="/products">Products</a>
+              <Link to="/products">Products</Link>
             </li>
             <li>
-              <a href="/about">About</a>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <a href="/services">Services</a>
+              <Link to="/services">Services</Link>
             </li>
             <li>
-              <a href="/contact">Contact</a>
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
         </div>
 
+        {/* -------- SUPPORT LINKS -------- */}
         <div className="footer-links">
           <h4>Support</h4>
           <ul>
             <li>
-              <a href="/faq">FAQs</a>
+              <Link to="/faq">FAQs</Link>
             </li>
             <li>
-              <a href="/help">Help Center</a>
+              <Link to="/help">Help Center</Link>
             </li>
             <li>
-              <a href="/order-tracking">Order Tracking</a>
+              <Link to="/order-tracking">Order Tracking</Link>
             </li>
             <li>
-              <a href="/shipping-info">Shipping Info</a>
+              <Link to="/shipping-info">Shipping Info</Link>
             </li>
           </ul>
         </div>
 
+        {/* -------- SOCIAL LINKS -------- */}
         <div className="footer-social">
           <h4>Follow Us</h4>
           <div className="social-icons">
