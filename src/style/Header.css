@@ -165,10 +165,10 @@
 }
 
 .h-line {
-  width: 30px;
-  height: 3px;
+  width: 10px;
+  height: 5px;
   background: #222;
-  margin: 5px 0;
+  margin: 1px 0;
   border-radius: 10px;
   transition: 0.4s ease;
 }
