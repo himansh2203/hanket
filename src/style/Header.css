@@ -225,94 +225,49 @@
   }
 }
 
-/* =======================
-   PREMIUM MOBILE NAVIGATION
-   ======================= */
+/* HAMBURGER BASE */
+.header-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1200;
+}
+
+/* HAMBURGER LINES */
+.h-line {
+  width: 26px;
+  height: 3px;
+  background: #000;
+  transition: 0.3s;
+}
+
+/* RESPONSIVE */
 @media (max-width: 950px) {
-
-  /* HIDE DESKTOP NAV ITEMS */
-  .header-links,
-  .header-btn-group,
-  .header-search-form {
-    display: none;
-  }
-
-  /* SHOW HAMBURGER */
   .header-hamburger {
-    display: block;
-    z-index: 2000;
+    display: flex;
   }
 
-  /* MOBILE LEFT DRAWER */
-  .mobile-drawer {
+  .header-links {
     position: fixed;
     top: 0;
     left: -100%;
-    width: 80%;
-    max-width: 320px;
     height: 100vh;
-    background: #111;
-    color: #fff;
-    padding: 70px 22px;
-    display: flex;
+    width: 250px;
+   
     flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 20px;
     gap: 25px;
-    transition: left 0.35s ease;
-    z-index: 1500;
-    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    transition: 0.3s ease;
+    z-index: 1100;
   }
 
-  /* WHEN OPEN */
-  .mobile-drawer.active {
+  .header-links.header-active {
     left: 0;
   }
 
-  /* BACKDROP */
-  .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0,0,0,0.4);
-    backdrop-filter: blur(2px);
+  .header-btn-group {
     display: none;
-    z-index: 1400;
-  }
-  .backdrop.show {
-    display: block;
-  }
-
-  /* MOBILE LINKS */
-  .mobile-link {
-    font-size: 18px;
-    font-weight: 500;
-    color: #ddd;
-    text-decoration: none;
-    padding: 10px 0;
-    display: block;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .mobile-link:hover {
-    color: #ff4d6d;
-  }
-
-  /* CLOSE (X) BUTTON INSIDE DRAWER */
-  .mobile-close-btn {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    font-size: 24px;
-    color: #fff;
-    cursor: pointer;
-    padding: 6px;
-  }
-}
-
-/* VERY SMALL DEVICES */
-@media (max-width: 600px) {
-  .mobile-drawer {
-    width: 85%;
   }
 }

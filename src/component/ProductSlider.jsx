@@ -34,7 +34,7 @@ const ProductSlider = () => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
     swipe: true,
     draggable: true,
     pauseOnHover: true,
