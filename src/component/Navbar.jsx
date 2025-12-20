@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../style/Navbar.css";
 import logo from "../assets/hanket_image.ico";
-import { Link } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -15,32 +15,44 @@ const Navbar = () => {
           <span className="brand-text">HANKET</span>
         </div>
 
-        {/* Hamburger Icon */}
+        {/* Hamburger */}
         <div className="nav-hamburger" onClick={() => setOpen(!open)}>
           <span className={open ? "line line1" : "line"}></span>
           <span className={open ? "line line2" : "line"}></span>
           <span className={open ? "line line3" : "line"}></span>
         </div>
 
-        {/* Navigation Links */}
+        {/* Links */}
         <ul className={open ? "nav-links nav-open" : "nav-links"}>
           <li>
-            <Link href="/" className="nav-link">
+            <Link to="/" className="nav-link" onClick={() => setOpen(false)}>
               Home
             </Link>
           </li>
           <li>
-            <Link href="/about" className="nav-link">
+            <Link
+              to="/about"
+              className="nav-link"
+              onClick={() => setOpen(false)}
+            >
               About
             </Link>
           </li>
           <li>
-            <Link href="/services" className="nav-link">
+            <Link
+              to="/services"
+              className="nav-link"
+              onClick={() => setOpen(false)}
+            >
               Services
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="nav-link">
+            <Link
+              to="/contact"
+              className="nav-link"
+              onClick={() => setOpen(false)}
+            >
               Contact
             </Link>
           </li>
