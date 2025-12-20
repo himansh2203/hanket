@@ -1,0 +1,53 @@
+/* MOBILE APP STYLE BOTTOM NAV */
+.mbn-root {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #eee;
+  z-index: 900;
+}
+
+/* Item */
+.mbn-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #888;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+/* Active tab */
+.mbn-item.active {
+  color: #111;
+}
+
+/* Thumb tap effect */
+.mbn-item:active {
+  transform: scale(0.92);
+}
+
+/* Desktop hide */
+@media (min-width: 768px) {
+  .mbn-root {
+    display: none;
+  }
+}
+
+.mbn-item.center {
+  background: black;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  margin-top: -25px;
+}
+
+

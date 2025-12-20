@@ -11,3 +11,10 @@ body {
   font-family: "Poppins", sans-serif;
    background: linear-gradient(270deg, #ffdee9 5%, #b5fffc 150%);
 }
+
+/* index.css */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 70px;
+  }
+}

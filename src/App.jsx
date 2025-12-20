@@ -24,55 +24,98 @@ import Cart from "./page/Cart";
 import ProductDesc from "./page/ProductDesc";
 import ForgotPassword from "./page/ForgetPassword";
 
+import Layout from "./component/Layout";
+
+// 🔥 ADMIN IMPORTS
+import AdminLayout from "./admin/AdminLayout";
+import Dashboard from "./admin/Dashboard";
+import AdminProducts from "./admin/Products";
+
 import { AuthProvider, AuthContext } from "./context/AuthContext";
 
-// ------------------- PROTECTED ROUTE -------------------
-const ProtectedRoute = ({ children }) => {
+// ---------------- PROTECTED ROUTES ----------------
+const UserProtectedRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
   return user ? children : <Navigate to="/login" replace />;
 };
-// --------------------------------------------------------
+
+// const AdminProtectedRoute = ({ children }) => {
+//   const token = localStorage.getItem("token"); // JWT
+//   return token ? children : <Navigate to="/login" replace />;
+// };
+const AdminProtectedRoute = ({ children }) => {
+  return children;
+};
+
+// -------------------------------------------------
 
 const App = () => {
   return (
     <Router>
       <AuthProvider>
-        <Header />
-
         <Suspense fallback={<div className="page-loader">Loading...</div>}>
           <Routes>
-            {/* --------- PUBLIC ROUTES -------- */}
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/help" element={<HelpCenter />} />
-            <Route path="/order-tracking" element={<OrderTracking />} />
-            <Route path="/shipping-info" element={<ShippingInfo />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/product/:id" element={<ProductDesc />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-
-            {/* --------- PROTECTED ROUTE -------- */}
+            {/* ================= USER SITE ================= */}
             <Route
-              path="/profile"
+              path="/*"
               element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
+                <>
+                  <Layout />
+                  {/* <Header /> */}
+
+                  <Routes>
+                    {/* PUBLIC */}
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/products" element={<Products />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/help" element={<HelpCenter />} />
+                    <Route path="/order-tracking" element={<OrderTracking />} />
+                    <Route path="/shipping-info" element={<ShippingInfo />} />
+                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/product/:id" element={<ProductDesc />} />
+                    <Route
+                      path="/forgot-password"
+                      element={<ForgotPassword />}
+                    />
+
+                    {/* USER PROTECTED */}
+                    <Route
+                      path="/profile"
+                      element={
+                        <UserProtectedRoute>
+                          <Profile />
+                        </UserProtectedRoute>
+                      }
+                    />
+
+                    {/* 404 */}
+                    <Route path="*" element={<Navigate to="/" />} />
+                  </Routes>
+
+                  <Footer />
+                </>
               }
             />
 
-            {/* --------- 404 HANDLER -------- */}
-            <Route path="*" element={<Navigate to="/" />} />
+            {/* ================= ADMIN PANEL ================= */}
+            <Route
+              path="/admin"
+              element={
+                <AdminProtectedRoute>
+                  <AdminLayout />
+                </AdminProtectedRoute>
+              }
+            >
+              <Route index element={<Dashboard />} />
+              <Route path="products" element={<AdminProducts />} />
+            </Route>
           </Routes>
         </Suspense>
-
-        <Footer />
       </AuthProvider>
     </Router>
   );
