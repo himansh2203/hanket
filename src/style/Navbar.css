@@ -98,6 +98,10 @@
 /* Hamburger Cross Animation */
 .line1 {
   transform: rotate(45deg) translate(6px, 6px);
+  -webkit-transform: rotate(45deg) translate(6px, 6px);
+  -moz-transform: rotate(45deg) translate(6px, 6px);
+  -ms-transform: rotate(45deg) translate(6px, 6px);
+  -o-transform: rotate(45deg) translate(6px, 6px);
 }
 .line2 {
   opacity: 0;

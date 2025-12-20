@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../style/Navbar.css";
 import logo from "../assets/hanket_image.ico";
+import { Link } from "lucide-react";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -24,24 +25,24 @@ const Navbar = () => {
         {/* Navigation Links */}
         <ul className={open ? "nav-links nav-open" : "nav-links"}>
           <li>
-            <a href="/" className="nav-link">
+            <Link href="/" className="nav-link">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/about" className="nav-link">
+            <Link href="/about" className="nav-link">
               About
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/services" className="nav-link">
+            <Link href="/services" className="nav-link">
               Services
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/contact" className="nav-link">
+            <Link href="/contact" className="nav-link">
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
