@@ -23,6 +23,7 @@ import Profile from "./page/Profile";
 import Cart from "./page/Cart";
 import ProductDesc from "./page/ProductDesc";
 import ForgotPassword from "./page/ForgetPassword";
+import Favourite from "./page/Favourite";
 
 import Layout from "./component/Layout";
 
@@ -82,6 +83,7 @@ const App = () => {
                       path="/forgot-password"
                       element={<ForgotPassword />}
                     />
+                    <Route path="/favourite" element={<Favourite />} />
 
                     {/* USER PROTECTED */}
                     <Route
