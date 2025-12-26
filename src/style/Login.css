@@ -16,7 +16,7 @@
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(14px);
-  box-shadow: 0 10px 40px #bea163;
+  box-shadow: 0 10px 40px rgba(255, 95, 135, 0.35);
   animation: lpFadeUp 0.9s ease;
 }
 
@@ -25,7 +25,7 @@
   font-size: 32px;
   font-weight: 700;
   text-align: center;
-  background: #bea163;
+  background: linear-gradient(90deg, #ff4d6d, #ff758c);
   -webkit-background-clip: text;
   color: transparent;
 }
@@ -55,7 +55,7 @@
 
 .lp-input-box input:focus {
   outline: none;
-  border: 2px solid #bea163;
+  border: 2px solid #ff4d6d;
   background: #fff;
 }
 
@@ -78,14 +78,14 @@
   padding: 0 4px;
   background: #fff;
   border-radius: 6px;
-  color: #bea163;
+  color: #ff4d6d;
 }
 
 /* ---------------- BUTTON ---------------- */
 .lp-btn {
   width: 100%;
   padding: 14px;
-  background: #bea163;
+  background: linear-gradient(90deg, #ff4d6d, #ff758c);
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -93,7 +93,7 @@
   font-weight: 600;
   margin-top: 10px;
   cursor: pointer;
-  box-shadow: 0 6px 16px #bea163;
+  box-shadow: 0 6px 16px rgba(255, 77, 109, 0.4);
   transition: 0.3s ease;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .lp-forgot:hover {
-  color: #bea163;
+  color: #ff4d6d;
 }
 
 .lp-signup {
@@ -122,7 +122,7 @@
 }
 
 .lp-signup a {
-  color: #bea163;
+  color: #ff4d6d;
   font-weight: 600;
 }
 

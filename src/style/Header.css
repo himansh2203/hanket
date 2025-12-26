@@ -5,9 +5,9 @@
   width: 100%;
   z-index: 1200;
   backdrop-filter: blur(12px);
-  /* background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12); */
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
 }
 
 /* CONTAINER */
@@ -36,7 +36,7 @@
 .header-brand {
   font-size: 28px;
   font-weight: 700;
-  background: #bea163;
+  background: linear-gradient(90deg, #ff4d6d, #ff758c);
   -webkit-background-clip: text;
   color: transparent;
 }
@@ -66,7 +66,7 @@
   height: 3px;
   bottom: -3px;
   left: 0;
-  background: #bea163;
+  background: #ff4d6d;
   transition: 0.3s ease;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .header-link:hover {
-  color: #bea163;
+  color: #ff4d6d;
 }
 
 /* SEARCH BAR */
@@ -96,7 +96,7 @@
 }
 
 .header-search-btn {
-  background: #bea163;
+  background: #ff4d6d;
   border: none;
   color: #fff;
   padding: 6px 12px;
@@ -105,7 +105,7 @@
 }
 
 .header-search-btn:hover {
-  background: #bea163;
+  background: #ff758c;
 }
 
 /* CTA BUTTONS */
@@ -136,7 +136,7 @@
 }
 
 .signup-btn {
-  background: #bea163;
+  background: linear-gradient(90deg, #ff4d6d, #ff758c);
   color: #fff;
   box-shadow: 0 4px 12px rgba(255, 77, 109, 0.4);
 }

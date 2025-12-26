@@ -2,7 +2,7 @@
 .home-container {
   width: 100%;
   font-family: "Poppins", sans-serif;
-  /* color: #ffff; */
+  color: #333;
 }
 
 /* ----------- HERO SECTION ----------- */
@@ -12,18 +12,9 @@
   align-items: center;
   padding: 70px 7%;
   gap: 40px;
-  /* background: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%); */
-  background-image:
-    url("../assets/ads.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 200vh;
-  
+  background: linear-gradient(135deg, #ffdee9 0%, #b5fffc 100%);
+  border-radius: 0 0 40px 40px;
 }
-
-
 
 .hero-content {
   flex: 1;
@@ -44,7 +35,7 @@
 
 .hero-btn {
   padding: 13px 32px;
-  background: #bea163;
+  background: #ff006a;
   color: white;
   border: none;
   border-radius: 35px;
@@ -53,7 +44,7 @@
   transition: 0.3s;
 }
 .hero-btn:hover {
-  background: #bea163;
+  background: #d8005c;
   transform: scale(1.05);
 }
 
@@ -87,19 +78,13 @@
 
 .feature-icon {
   font-size: 32px;
-  color: #bea163;
+  color: #ff006a;
   margin-bottom: 10px;
 }
 
 /* ----------- CATEGORY SECTION ----------- */
 .categories {
   padding: 60px 6%;
-  /* background-image:
-  url("../assets/clothes4.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
 }
 
 .section-title {
@@ -157,7 +142,6 @@
   .hero {
     flex-direction: column;
     text-align: center;
-      min-height: 100vh;
   }
 
   .hero-image img {
