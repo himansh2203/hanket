@@ -17,7 +17,7 @@
 
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(14px);
-  box-shadow: 0 10px 45px #bea163;
+  box-shadow: 0 10px 45px #bea199;
 
   animation: spFadeUp 0.9s ease;
 }

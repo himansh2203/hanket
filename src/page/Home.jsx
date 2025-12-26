@@ -15,8 +15,8 @@ const Home = () => {
   return (
     <div className="home-container">
       <Offers />
-
       {/* <AdsBlock /> */}
+
       {/* ---------------- HERO SECTION ---------------- */}
       <section className="hero">
         <div className="hero-content">
@@ -42,6 +42,7 @@ const Home = () => {
       <ShopByCategory />
 
       <FeaturedCategories />
+      {/* ---------------- PRODUCT SLIDER SECTION ---------------- */}
       <ProductSlider />
     </div>
   );
