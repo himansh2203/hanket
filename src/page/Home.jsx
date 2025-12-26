@@ -4,18 +4,22 @@ import { useNavigate } from "react-router-dom";
 import { FaShoppingCart, FaStar, FaTruck, FaShieldAlt } from "react-icons/fa";
 import ProductSlider from "../component/ProductSlider";
 import ImageSlider from "../component/ImageSlider";
+import AdsBlock from "../component/AdsBlock";
+import Offers from "../component/Offers";
 
 const Home = () => {
   const navigate = useNavigate();
   return (
     <div className="home-container">
+      <Offers />
+      {/* <AdsBlock /> */}
       {/* ---------------- HERO SECTION ---------------- */}
       <section className="hero">
         <div className="hero-content">
-          <h1 className="hero-title">
+          <h1 className="hero-title" style={{ color: "#ffffff" }}>
             Discover Premium Products, <br /> Delivered to Your Doorstep
           </h1>
-          <p className="hero-subtitle">
+          <p className="hero-subtitle" style={{ color: "#ffffff" }}>
             Shop from thousands of high-quality items curated just for you.
           </p>
 
@@ -24,16 +28,16 @@ const Home = () => {
           </button>
         </div>
 
-        <div className="hero-image">
+        {/* <div className="hero-image">
           <img
             src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
             alt="Shopping Banner"
           />
-        </div>
+        </div> */}
       </section>
 
       {/* ---------------- FEATURES SECTION ---------------- */}
-      <section className="features">
+      {/* <section className="features">
         <div className="feature-card">
           <FaTruck className="feature-icon" />
           <h3>Fast Delivery</h3>
@@ -57,7 +61,7 @@ const Home = () => {
           <h3>Easy Shopping</h3>
           <p>Seamless experience across the platform.</p>
         </div>
-      </section>
+      </section> */}
 
       {/* ---------------- CATEGORY SECTION ---------------- */}
       <section className="categories">

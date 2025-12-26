@@ -109,7 +109,7 @@ const Signup = () => {
             <span
               className="sp-login-link"
               onClick={() => navigate("/login")}
-              style={{ cursor: "pointer", color: "#ff4d6d", fontWeight: "600" }}
+              style={{ cursor: "pointer", color: "#bea163", fontWeight: "600" }}
             >
               Login
             </span>

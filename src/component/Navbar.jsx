@@ -69,11 +69,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "../style/Navbar.css";
 import { Search, Heart, ShoppingCart, Menu, X } from "lucide-react";
 import logo from "../assets/hanket_image.ico";
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-=======
+
 import Favourite from "../page/Favourite";
->>>>>>> 9071eea (Add large images via LFS)
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -88,7 +85,6 @@ const Navbar = () => {
           <img src={logo} alt="Hanket Logo" className="logo-img" />
           <span className="brand-text">HANKET</span>
         </Link>
-
         {/* Navigation */}
         <nav className={`wm-nav ${open ? "open" : ""}`}>
           <Link to="/" className="nav-link" onClick={closeMenu}>
@@ -144,7 +140,6 @@ const Navbar = () => {
             BUY
           </Link>
         </nav>
-
         {/* Right Actions */}
         <div className="wm-actions">
           <Link to="/login" className="nav-link login" onClick={closeMenu}>
@@ -160,17 +155,14 @@ const Navbar = () => {
             <span className="price">$0.00</span>
           </Link>
         </div>
-
         {/* Hamburger */}
-<<<<<<< HEAD
-        <div className="nav-hamburger" onClick={() => setOpen(!open)}>
+        {/* <div className="nav-hamburger" onClick={() => setOpen(!open)}>
           <span className={open ? "line line1" : "line"}></span>
           <span className={open ? "line line2" : "line"}></span>
           <span className={open ? "line line3" : "line"}></span>
-        </div>
-
+        </div> */}
         {/* Links */}
-        <ul className={open ? "nav-links nav-open" : "nav-links"}>
+        {/* <ul className={open ? "nav-links nav-open" : "nav-links"}>
           <li>
             <Link to="/" className="nav-link" onClick={() => setOpen(false)}>
               Home
@@ -203,12 +195,13 @@ const Navbar = () => {
               Contact
             </Link>
           </li>
-        </ul>
-=======
+        </ul> */}
+        {/* <button className="hamburger" onClick={() => setOpen(!open)}>
+          {open ? <X /> : <Menu />}
+        </button>{" "} */}
         <button className="hamburger" onClick={() => setOpen(!open)}>
           {open ? <X /> : <Menu />}
         </button>
->>>>>>> 9071eea (Add large images via LFS)
       </div>
     </header>
   );
