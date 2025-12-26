@@ -1,0 +1,135 @@
+/* ===============================
+   FEATURED CATEGORIES (FC)
+   Fully Scoped – No Conflict
+================================ */
+
+/* SECTION */
+.fc-section {
+  padding: 70px 60px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+/* TEXT */
+.fc-subtitle {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #9b9b9b;
+  margin-bottom: 8px;
+}
+
+.fc-title {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.fc-desc {
+  font-size: 15px;
+  color: #777;
+  max-width: 620px;
+  margin: 0 auto 45px;
+  line-height: 1.6;
+}
+
+/* GRID */
+.fc-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-auto-rows: 260px;
+  gap: 22px;
+}
+
+/* CARD */
+.fc-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f3f3f3;
+}
+
+/* LARGE CARD */
+.fc-card.fc-large {
+  grid-row: span 2;
+}
+
+/* IMAGE */
+.fc-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+/* IMAGE HOVER */
+.fc-card:hover img {
+  transform: scale(1.1);
+}
+
+/* OVERLAY */
+.fc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.15)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* SHOW OVERLAY */
+.fc-card:hover .fc-overlay {
+  opacity: 1;
+}
+
+/* OVERLAY TEXT */
+.fc-overlay h3 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.fc-overlay span {
+  font-size: 14px;
+  color: #eaeaea;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 992px) {
+  .fc-section {
+    padding: 60px 30px;
+  }
+
+  .fc-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .fc-card.fc-large {
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .fc-section {
+    padding: 50px 20px;
+  }
+
+  .fc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fc-title {
+    font-size: 28px;
+  }
+}
