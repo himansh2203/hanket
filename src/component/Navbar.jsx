@@ -110,15 +110,17 @@ const Navbar = () => {
           </div>
 
           <div className="dropdown">
-            <span className="nav-link">BLOG</span>
-            <div className="dropdown-menu">
+            <Link className="nav-link" to="/genz" onClick={closeMenu}>
+              <span>GEN-Z</span>
+            </Link>
+            {/* <div className="dropdown-menu">
               <Link to="/blog-grid" onClick={closeMenu}>
                 Blog Grid
               </Link>
               <Link to="/blog-list" onClick={closeMenu}>
                 Blog List
               </Link>
-            </div>
+            </div> */}
           </div>
 
           <div className="dropdown">
