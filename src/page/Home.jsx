@@ -6,12 +6,15 @@ import ProductSlider from "../component/ProductSlider";
 import ImageSlider from "../component/ImageSlider";
 import AdsBlock from "../component/AdsBlock";
 import Offers from "../component/Offers";
+import HomeIntro from "../component/HomeIntro";
+import ShopByCategory from "../component/ShopByCatogry";
 
 const Home = () => {
   const navigate = useNavigate();
   return (
     <div className="home-container">
       <Offers />
+
       {/* <AdsBlock /> */}
       {/* ---------------- HERO SECTION ---------------- */}
       <section className="hero">
@@ -62,9 +65,10 @@ const Home = () => {
           <p>Seamless experience across the platform.</p>
         </div>
       </section> */}
-
+      <HomeIntro />
+      <ImageSlider />
       {/* ---------------- CATEGORY SECTION ---------------- */}
-      <section className="categories">
+      {/* <section className="categories">
         <h2 className="section-title">Shop by Categories</h2>
 
         <div className="category-grid">
@@ -100,8 +104,8 @@ const Home = () => {
             <h4>Beauty</h4>
           </div>
         </div>
-      </section>
-      <ImageSlider />
+      </section> */}
+      <ShopByCategory />
       <ProductSlider />
     </div>
   );

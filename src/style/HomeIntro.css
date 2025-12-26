@@ -1,0 +1,133 @@
+.home-intro {
+  width: 100%;
+  background: #fff;
+  padding: 80px 0;
+}
+
+.home-intro-container {
+  max-width: 1300px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* LEFT SIDE */
+.home-intro-tag {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.home-intro-content h1 {
+  font-size: 42px;
+  line-height: 1.2;
+  margin: 20px 0;
+  color: #111;
+}
+
+.home-intro-content p {
+  color: #666;
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.home-intro-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* BUTTONS (global rakh sakte ho) */
+.btn {
+  padding: 14px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s ease;
+}
+
+.btn.primary {
+  background: #b59a5b;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #9f854c;
+}
+
+.btn.outline {
+  background: transparent;
+  border: 1px solid #ddd;
+  color: #111;
+}
+
+.btn.outline:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* RIGHT SIDE BRAND GRID */
+.home-intro-brands {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid #eee;
+}
+
+.home-intro-brand-box {
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.home-intro-brand-box:nth-child(3n) {
+  border-right: none;
+}
+
+.home-intro-brand-box:nth-last-child(-n + 3) {
+  border-bottom: none;
+}
+
+.home-intro-brand-box img {
+  max-width: 90px;
+  opacity: 0.6;
+  transition: 0.3s ease;
+}
+
+.home-intro-brand-box:hover img {
+  opacity: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .home-intro-container {
+    grid-template-columns: 1fr;
+  }
+
+  .home-intro-content h1 {
+    font-size: 34px;
+  }
+
+  .home-intro-brands {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .home-intro-content h1 {
+    font-size: 28px;
+  }
+
+  .home-intro-brands {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

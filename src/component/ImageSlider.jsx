@@ -3,9 +3,9 @@ import "../style/ImageSlider.css";
 
 const ImageSlider = () => {
   const images = [
-    "https://images.unsplash.com/photo-1515162305284-7a3a9e66f05f",
+    "src/assets/clothes4.jpg",
     "https://images.unsplash.com/photo-1512436991641-6745cdb1723f",
-    "https://images.unsplash.com/photo-1503602642458-232111445657",
+    "src/assets/clothes1.jpg",
   ];
 
   const [index, setIndex] = useState(0);
