@@ -17,7 +17,7 @@
 
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(14px);
-  box-shadow: 0 10px 45px rgba(255, 77, 109, 0.35);
+  box-shadow: 0 10px 45px #bea163;
 
   animation: spFadeUp 0.9s ease;
 }
@@ -28,7 +28,7 @@
   font-weight: 700;
   text-align: center;
 
-  background: linear-gradient(90deg, #ff4d6d, #ff758c);
+  background: linear-gradient(90deg, #bea163 ,#bea160);
   -webkit-background-clip: text;
   color: transparent;
 }
@@ -59,7 +59,7 @@
 .sp-input-box input:focus {
   outline: none;
   background: #fff;
-  border: 2px solid #ff4d6d;
+  border: 2px solid #bea163;
 }
 
 .sp-input-box label {
@@ -81,7 +81,7 @@
   background: #fff;
   padding: 0 4px;
   border-radius: 6px;
-  color: #ff4d6d;
+  color: #bea163;
 }
 
 /* ---------------- BUTTON ---------------- */
@@ -91,14 +91,14 @@
   font-size: 18px;
   font-weight: 600;
 
-  background: linear-gradient(90deg, #ff4d6d, #ff758c);
+  background: linear-gradient(90deg, #bea163, #bea160);
   color: white;
 
   border: none;
   border-radius: 12px;
   cursor: pointer;
 
-  box-shadow: 0 6px 16px rgba(255, 77, 109, 0.35);
+  box-shadow: 0 6px 16px #bea163;
   transition: 0.3s ease;
 }
 
@@ -114,7 +114,7 @@
 }
 
 .sp-login-redirect a {
-  color: #ff4d6d;
+  color: #bea163;
   font-weight: 600;
 }
 

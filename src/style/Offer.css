@@ -1,0 +1,37 @@
+.offers-container {
+  display: block;
+  align-items: center;
+  padding: 3px 60px;
+}
+
+.offers-container img {
+  width: 100%;  /* Make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure the image doesn't overflow its container */
+}
+
+/* Media query for screens with a max-width of 768px (tablets and smaller devices) */
+@media (max-width: 768px) {
+  .offers-container {
+    padding: 3px 3px; /* Adjust padding for smaller screens */
+     align-items: center;
+  }
+
+  .offers-container img {
+    width: 80%; /* Reduce the image size on tablets */
+     align-items: center;
+  }
+}
+
+/* Media query for screens with a max-width of 480px (smartphones) */
+@media (max-width: 480px) {
+  .offers-container {
+    padding: 3px 20px; /* Adjust padding for mobile */
+     align-items: center;
+  }
+
+  .offers-container img {
+    width: 100%; /* Make the image fit 100% of the container on mobile */
+     align-items: center;
+  }
+}

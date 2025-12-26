@@ -76,7 +76,7 @@ const Login = () => {
               onClick={() => navigate("/signup")}
               style={{
                 cursor: "pointer",
-                color: "#ff4d6d",
+                color: "#bea163",
                 fontWeight: "600",
               }}
             >

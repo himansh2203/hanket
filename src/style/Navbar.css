@@ -6,8 +6,9 @@
   z-index: 1200;
 
   /* Glassmorphism Style */
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.65);
+  /* backdrop-filter: blur(10px); */
+  /* background: rgba(255, 255, 255, 0.65); */
+  background-color: #fff;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
@@ -29,8 +30,8 @@
 }
 
 .logo-img {
-  width: 42px;
-  height: 42px;
+  width: 30px;
+  height: 30px;
   border-radius: 10px;
   object-fit: cover;
 }
@@ -65,7 +66,7 @@
   position: absolute;
   width: 0%;
   height: 2.5px;
-  background: #ff4d6d;
+  background:#bea163;
   bottom: 0;
   left: 0;
   transition: 0.3s ease;
@@ -76,7 +77,7 @@
 
 /* Hover Color */
 .nav-link:hover {
-  color: #ff4d6d;
+  color: #bea163;
 }
 
 /* ---------------- HAMBURGER ---------------- */
@@ -191,3 +192,178 @@
     font-size: 16px;
   }
 }
+
+
+/*               gffffffffffffffffffffffffffffs                                   */
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* HEADER */
+.wm-header {
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.wm-container {
+  max-width: 1350px;
+  margin: auto;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.wm-logo {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.wm-logo span {
+  color: #b1976b;
+}
+
+/* NAV */
+.wm-nav {
+  display: flex;
+  gap: 30px;
+}
+
+.wm-nav a,
+.wm-nav span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+  cursor: pointer;
+  position: relative;
+}
+
+/* DROPDOWN */
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu {
+  position: absolute;
+  background: #fff;
+  padding: 15px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.3s;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 0;
+  font-weight: 500;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  color: #b1976b;
+}
+
+/* BUY */
+.buy {
+  color: #b1976b !important;
+}
+
+/* ACTIONS */
+.wm-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 14px;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  left: 10px;
+  background: #b1976b;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+}
+
+/* MOBILE */
+@media (max-width: 992px) {
+  .wm-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 280px;
+    background: #fff;
+    flex-direction: column;
+    padding: 90px 25px;
+    transition: 0.4s;
+  }
+
+  .wm-nav.open {
+    left: 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .wm-actions {
+    display: none;
+  }
+}
+
+/* MOBILE BOTTOM NAV */
+.mobile-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 70px;
+  }
+
+  .mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    z-index: 999;
+  }
+}
+
