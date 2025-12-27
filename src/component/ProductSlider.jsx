@@ -28,7 +28,7 @@ const ProductSlider = () => {
     dots: true,
     infinite: true,
     speed: 600,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     arrows: true,
     nextArrow: <NextArrow />,
@@ -58,7 +58,7 @@ const ProductSlider = () => {
           rating: item.rating?.rate || 4.5,
           isNew: Math.random() < 0.3, // randomly mark some products as new
         }));
-        setProducts(formatted.slice(0, 10));
+        setProducts(formatted.slice(0, 6));
       } catch (err) {
         console.error("Failed to fetch products:", err);
       } finally {

@@ -154,7 +154,7 @@ const Navbar = () => {
           <Link to="/cart" className="cart nav-link" onClick={closeMenu}>
             <ShoppingCart onClick={() => navigate("/cart")} />
             <span className="badge">0</span>
-            <span className="price">$0.00</span>
+            <span className="price">₹0.00</span>
           </Link>
         </div>
         {/* Hamburger */}

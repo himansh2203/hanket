@@ -3,28 +3,29 @@ import "../style/Products.css";
 import ProductCard from "../component/ProductCard";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]); // original data
+  const [filtered, setFiltered] = useState([]); // filtered data
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // 🔥 Fetch products from backend API
+  // filters
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [priceRange, setPriceRange] = useState([0, 5000]);
+
+  // 🔥 Fetch products
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      setError("");
-
-      const response = await fetch(
+      const res = await fetch(
         "https://mocki.io/v1/ceefb4ff-6863-4510-be37-c28b35540eab"
       );
-
-      if (!response.ok) throw new Error("Failed to fetch products");
-
-      const data = await response.json();
+      if (!res.ok) throw new Error("Failed");
+      const data = await res.json();
 
       setProducts(data.products || []);
+      setFiltered(data.products || []);
     } catch (err) {
-      console.error("Error fetching products:", err);
-      setError("Failed to load products. Please try again.");
+      setError("Failed to load products");
     } finally {
       setLoading(false);
     }
@@ -34,42 +35,67 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (product) => {
-    alert(`Added "${product.name}" to cart!`);
-  };
+  // 🔥 Apply Filters
+  useEffect(() => {
+    let result = [...products];
+
+    // category filter
+    if (selectedCategory !== "all") {
+      result = result.filter((p) => p.category === selectedCategory);
+    }
+
+    // price filter
+    result = result.filter(
+      (p) => p.price >= priceRange[0] && p.price <= priceRange[1]
+    );
+
+    setFiltered(result);
+  }, [selectedCategory, priceRange, products]);
 
   return (
     <div className="products-page">
       <h1 className="products-title">Our Products</h1>
 
-      {loading ? (
-        <div className="products-grid">
-          {[...Array(6)].map((_, i) => (
-            <div className="product-card skeleton" key={i}>
-              <div className="product-img-box skeleton-box" />
-              <div className="product-info">
-                <div className="skeleton-text short" />
-                <div className="skeleton-text medium" />
-                <div className="skeleton-text long" />
-                <div className="product-bottom">
-                  <div className="skeleton-text short" />
-                  <div className="skeleton-btn" />
-                </div>
-              </div>
-            </div>
-          ))}
+      {/* 🔥 FILTER BAR */}
+      <div className="filter-bar">
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="all">All Categories</option>
+          <option value="mens">Mens</option>
+          <option value="womens">Womens</option>
+          <option value="kids">Kids</option>
+          <option value="genz">GenZ</option>
+          <option value="accessories">Accessories</option>
+        </select>
+
+        <div className="price-filter">
+          <span>₹{priceRange[0]}</span>
+          <input
+            type="range"
+            min="0"
+            max="5000"
+            step="100"
+            value={priceRange[1]}
+            onChange={(e) => setPriceRange([0, Number(e.target.value)])}
+          />
+          <span>₹{priceRange[1]}</span>
         </div>
+      </div>
+
+      {/* 🔥 PRODUCTS */}
+      {loading ? (
+        <p>Loading...</p>
       ) : error ? (
-        <div className="products-error">{error}</div>
+        <p className="products-error">{error}</p>
       ) : (
         <div className="products-grid">
-          {products.map((item) => (
-            <ProductCard
-              key={item.id}
-              product={item}
-              onAddToCart={() => handleAddToCart(item)}
-            />
-          ))}
+          {filtered.length === 0 ? (
+            <p className="no-products">No products found</p>
+          ) : (
+            filtered.map((item) => <ProductCard key={item.id} product={item} />)
+          )}
         </div>
       )}
     </div>
