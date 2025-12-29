@@ -12,27 +12,59 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  // 🧮 TOTAL PRICE CALCULATION
   const totalAmount = cartItems.reduce(
     (sum, item) => sum + item.product.price * item.qty,
     0
   );
 
   if (cartItems.length === 0) {
-    return <h2 className="empty-cart">🛒 Cart is empty</h2>;
+    return <h2 className="empty-cart">🛒 Your cart is empty</h2>;
   }
+
+  const handleCheckout = () => {
+    const options = {
+      key: "YOUR_RAZORPAY_KEY",
+      amount: totalAmount * 100,
+      currency: "INR",
+      name: "Hanket Store",
+      description: "Purchase",
+      handler: function (response) {
+        alert(
+          `Payment Successful! Payment ID: ${response.razorpay_payment_id}`
+        );
+        dispatch(clearCart());
+      },
+      prefill: {
+        name: "John Doe",
+        email: "john@example.com",
+        contact: "9999999999",
+      },
+      theme: { color: "#F37254" },
+    };
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
 
   return (
     <div className="cart-page">
       <h2>🛒 My Cart</h2>
-      {cartItems.map((item) => (
-        <div key={item.product.id} className="cart-item">
-          {/* LEFT */}
-          <div>
-            <h4>{item.product.name}</h4>
-            <p>₹{item.product.price}</p>
 
-            {/* 🔢 QTY CONTROLS */}
+      <div className="cart-items-container">
+        {cartItems.map((item) => (
+          <div key={item.product.id} className="cart-item">
+            {/* PRODUCT IMAGE */}
+            <div className="item-image">
+              <img
+                src={item.product.image || "default.png"}
+                alt={item.product.name}
+              />
+            </div>
+
+            <div className="item-info">
+              <h4>{item.product.name}</h4>
+              <p>₹{item.product.price}</p>
+            </div>
+
             <div className="qty-box">
               <button onClick={() => dispatch(decrementQty(item.product.id))}>
                 -
@@ -42,38 +74,30 @@ const Cart = () => {
                 +
               </button>
             </div>
-          </div>
 
-          {/* RIGHT */}
-          <div className="cart-right">
-            {/* 💰 ITEM TOTAL */}
-            <p className="item-total">₹{item.product.price * item.qty}</p>
+            <div className="item-total">
+              ₹{(item.product.price * item.qty).toFixed(2)}
+            </div>
 
             <button
               className="remove-btn"
               onClick={() => dispatch(removeFromCart(item.product.id))}
             >
-              ❌ Remove
+              ❌
             </button>
           </div>
-        </div>
-      ))}
-      {/* 💰 GRAND TOTAL */}
-      <h3 className="cart-total">Total Amount: ₹{totalAmount.toFixed(2)}</h3>
-      <button
-        className="total-btn"
-        style={{
-          marginTop: "10px",
-          background: "red",
-          color: "#fff",
-          padding: "8px 12px",
-          border: "none",
-          cursor: "pointer",
-        }}
-        onClick={() => dispatch(clearCart())}
-      >
-        Clear Cart
-      </button>
+        ))}
+      </div>
+
+      <div className="cart-summary">
+        <h3>Total: ₹{totalAmount.toFixed(2)}</h3>
+        <button className="checkout-button" onClick={handleCheckout}>
+          Proceed to Checkout
+        </button>
+        <button className="clear-btn" onClick={() => dispatch(clearCart())}>
+          Clear Cart
+        </button>
+      </div>
     </div>
   );
 };
