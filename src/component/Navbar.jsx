@@ -73,8 +73,8 @@ const Navbar = () => {
           </div>
 
           <div className="dropdown">
-            <Link className="nav-link" to="/genz" onClick={closeMenu}>
-              <span>WOMENS</span>
+            <Link to="/products?category=womens" className="nav-link">
+              WOMENS
             </Link>
             <div className="dropdown-menu">
               <Link to="/blog-grid" onClick={closeMenu}>
@@ -105,7 +105,9 @@ const Navbar = () => {
           </div>
 
           <div className="dropdown">
-            <span className="nav-link">KIDS</span>
+            <Link to="/products?category=kids" className="nav-link">
+              KIDS
+            </Link>
             <div className="dropdown-menu">
               <Link to="/about" onClick={closeMenu}>
                 BOYS CLOTHING
@@ -128,7 +130,9 @@ const Navbar = () => {
             </div>
           </div>
           <div className="dropdown">
-            <span className="nav-link">HOME DECOR</span>
+            <Link to="/products?category=home-decor" className="nav-link">
+              HOME DECOR
+            </Link>
             <div className="dropdown-menu">
               <Link to="/about" onClick={closeMenu}>
                 HANDLOOM
@@ -155,7 +159,9 @@ const Navbar = () => {
           </div>
 
           <div className="dropdown">
-            <span className="nav-link">SKINCARE PRODUCTS</span>
+            <Link to="/products?category=skincare" className="nav-link">
+              SKINCARE PRODUCTS
+            </Link>
             <div className="dropdown-menu">
               <Link to="/about" onClick={closeMenu}>
                 MAKEUP
@@ -181,7 +187,11 @@ const Navbar = () => {
             </div>
           </div>
 
-          <Link to="/buy" className="nav-link buy" onClick={closeMenu}>
+          <Link
+            to="/bproducts?category=genz"
+            className="nav-link buy"
+            onClick={closeMenu}
+          >
             GENZ
           </Link>
         </nav>

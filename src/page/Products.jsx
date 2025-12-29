@@ -4,10 +4,11 @@ import ProductCard from "../component/ProductCard";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
 import { addToWishlist } from "../redux/wishlistSlice";
+import { useSearchParams } from "react-router-dom";
 
 const Products = () => {
-  const [products, setProducts] = useState([]); // original data
-  const [filtered, setFiltered] = useState([]); // filtered data
+  const [products, setProducts] = useState([]);
+  const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -17,7 +18,8 @@ const Products = () => {
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const dispatch = useDispatch();
 
-  const [favourites, setFavourites] = useState([]);
+  const [searchParams] = useSearchParams();
+
   // 🔥 SUB CATEGORY MAP
   const subCategoryMap = {
     mens: [
@@ -74,9 +76,7 @@ const Products = () => {
       const res = await fetch("/data/products.json");
       if (!res.ok) throw new Error("Failed");
       const data = await res.json();
-
       setProducts(data.products || []);
-      setFiltered(data.products || []);
     } catch (err) {
       setError("Failed to load products");
     } finally {
@@ -88,8 +88,20 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  // 🔥 Apply Filters
+  // 🔹 Set category from query AFTER products loaded
   useEffect(() => {
+    if (!products.length) return; // wait until products loaded
+    const categoryFromQuery = searchParams.get("category");
+    if (categoryFromQuery) {
+      setSelectedCategory(categoryFromQuery);
+      setSelectedSubCategory("all");
+    }
+  }, [products, searchParams]);
+
+  // 🔹 Apply Filters
+  useEffect(() => {
+    if (!products.length) return; // wait until products loaded
+
     let result = [...products];
 
     if (selectedCategory !== "all") {
@@ -107,21 +119,12 @@ const Products = () => {
     setFiltered(result);
   }, [selectedCategory, selectedSubCategory, priceRange, products]);
 
-  // 🔥 Handlers
+  // 🔹 Handlers
   const handleAddToCart = (product) => {
-    dispatch(
-      addToCart({
-        product,
-        qty: 1,
-      })
-    );
+    dispatch(addToCart({ product, qty: 1 }));
     alert(`${product.name} added to Cart`);
   };
 
-  // const handleAddToFavourite = (product) => {
-  //   setFavourites((prev) => [...prev, product]);
-  //   alert(`${product.name} added to Favourites`);
-  // };
   const handleAddToFavourite = (product) => {
     dispatch(addToWishlist(product));
     alert(`${product.name} added to Wishlist ❤️`);
@@ -129,14 +132,12 @@ const Products = () => {
 
   return (
     <div className="products-page">
-      {/* 🔥 FILTER BAR */}
       <div className="filter-bar">
-        {/* CATEGORY */}
         <select
           value={selectedCategory}
           onChange={(e) => {
             setSelectedCategory(e.target.value);
-            setSelectedSubCategory("all"); // reset sub category
+            setSelectedSubCategory("all");
           }}
         >
           <option value="all">All Categories</option>
@@ -148,7 +149,6 @@ const Products = () => {
           <option value="skincare">Skincare Products</option>
         </select>
 
-        {/* 🔥 SUB CATEGORY */}
         {selectedCategory !== "all" && subCategoryMap[selectedCategory] && (
           <select
             value={selectedSubCategory}
@@ -163,7 +163,6 @@ const Products = () => {
           </select>
         )}
 
-        {/* PRICE FILTER */}
         <div className="price-filter">
           <span>₹{priceRange[0]}</span>
           <input
@@ -178,7 +177,6 @@ const Products = () => {
         </div>
       </div>
 
-      {/* 🔥 PRODUCTS */}
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
