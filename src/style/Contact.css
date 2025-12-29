@@ -1,10 +1,14 @@
 /* ======================== CONTACT PAGE ======================== */
 
 .ct-root {
-  --ct-accent: #ff4d6d;
+  /* --ct-accent: #ff4d6d;
   --ct-accent2: #ff758c;
   --ct-bg1: #ffe0e8;
-  --ct-bg2: #d7faff;
+  --ct-bg2: #d7faff; */
+  --ct-accent:   color: #f6b100;;
+  --ct-accent2: color: #ffdc7d;;
+  --ct-bg1: #fff5e6;
+  --ct-bg2: #e6f7ff;
 
   font-family: "Poppins", sans-serif;
   background: linear-gradient(145deg, var(--ct-bg1), var(--ct-bg2));
@@ -98,7 +102,7 @@
 .ct-textarea:focus {
   border-color: var(--ct-accent);
   outline: none;
-  box-shadow: 0 0 6px rgba(255, 77, 109, 0.35);
+  box-shadow: 0 0 6px rgba(234, 232, 100, 0.35);
 }
 
 /* BUTTON */
@@ -114,7 +118,7 @@
 .ct-primary-btn {
   background: linear-gradient(90deg, var(--ct-accent), var(--ct-accent2));
   color: white;
-  box-shadow: 0 8px 22px rgba(255, 77, 109, 0.25);
+  box-shadow: 0 8px 22px rgba(234, 232, 100, 0.35);
 }
 
 .ct-primary-btn:hover {
@@ -152,8 +156,8 @@
 .ct-map-placeholder {
   background: linear-gradient(
     135deg,
-    rgba(255, 77, 109, 0.15),
-    rgba(255, 117, 140, 0.1)
+    rgba(234, 232, 100, 0.35),
+    rgba(216, 230, 62, 0.1)
   );
   height: 200px;
   border-radius: 12px;

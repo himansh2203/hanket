@@ -54,7 +54,7 @@ const Products = () => {
 
   return (
     <div className="products-page">
-      <h1 className="products-title">Our Products</h1>
+      {/* <h1 className="products-title">Our Products</h1> */}
 
       {/* 🔥 FILTER BAR */}
       <div className="filter-bar">
