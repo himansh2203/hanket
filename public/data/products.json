@@ -30,7 +30,7 @@
       "price": 2599,
       "image": "https://images.unsplash.com/photo-1528701800489-20be3c07f0c8?w=600",
       "description": "Comfortable and trendy sports shoes for all activities.",
-      "category": "mens"
+      "category": "genz"
     },
     {
       "id": 5,
@@ -62,7 +62,7 @@
       "price": 999,
       "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600",
       "description": "Stylish and protective classic sunglasses for all",
-      "category": "kid"
+      "category": "kids"
     }
   ]
 }
