@@ -24,6 +24,9 @@ const Navbar = () => {
     0
   );
 
+  const wishlistItems = useSelector((state) => state.wishlist.items);
+  const wishlistCount = wishlistItems.length;
+
   return (
     <header className="wm-header">
       <div className="wm-container">
@@ -189,13 +192,17 @@ const Navbar = () => {
           </Link>
 
           <Search className="icon" />
-          <Heart className="icon" onClick={() => navigate("/favourite")} />
+
+          <Link to="/favourite" className="cart nav-link" onClick={closeMenu}>
+            <Heart className="icon" onClick={() => navigate("/favourite")} />
+            {wishlistCount > 0 && (
+              <span className="badge wishlist-badge">{wishlistCount}</span>
+            )}
+          </Link>
 
           <Link to="/cart" className="cart nav-link" onClick={closeMenu}>
             <ShoppingCart onClick={() => navigate("/cart")} />
-
             {cartCount > 0 && <span className="badge">{cartCount}</span>}
-
             <span className="price">₹{totalPrice.toFixed(2)}</span>
           </Link>
         </div>
