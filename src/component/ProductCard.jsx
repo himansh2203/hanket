@@ -1,6 +1,7 @@
 import React from "react";
 import "../style/ProductCard.css";
 import { FaStar, FaShoppingCart } from "react-icons/fa";
+import defaultImg from "../assets/hanket_image.ico";
 
 const ProductCard = ({ product, onAddToCart }) => {
   if (!product) return null;
@@ -9,7 +10,7 @@ const ProductCard = ({ product, onAddToCart }) => {
     <div className="pcard-container">
       <div className="pcard-img-box">
         <img
-          src={product.image || "/fallback.png"}
+          src={product.image || defaultImg}
           alt={product.name || product.title}
           loading="lazy"
           onError={(e) =>
