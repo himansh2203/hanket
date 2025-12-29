@@ -92,54 +92,143 @@ const Navbar = () => {
           </Link>
 
           <div className="dropdown">
-            <span className="nav-link">CATEGORIES</span>
+            <span className="nav-link">MENS</span>
             <div className="dropdown-menu">
               <Link to="/shop-layouts" onClick={closeMenu}>
-                Mens
+                TOP WEAR
               </Link>
               <Link to="/product-types" onClick={closeMenu}>
-                Womens
+                SPORTS AND ACTIVE WEARS
               </Link>
               <Link to="/categories" onClick={closeMenu}>
-                Kids
+                INIDAN AND FESTIVE WEARS
               </Link>
               <Link to="/acessosries" onClick={closeMenu}>
-                Accessories
+                BOTTOM WEARS
+              </Link>
+              <Link to="/shop-layouts" onClick={closeMenu}>
+                INNER WEAR AND SLEEPWEAR
+              </Link>
+              <Link to="/product-types" onClick={closeMenu}>
+                FASHION ACCESSSIORIES
+              </Link>
+              <Link to="/categories" onClick={closeMenu}>
+                FOOTWEARS
               </Link>
             </div>
           </div>
 
           <div className="dropdown">
             <Link className="nav-link" to="/genz" onClick={closeMenu}>
-              <span>GEN-Z</span>
+              <span>WOMENS</span>
             </Link>
-            {/* <div className="dropdown-menu">
+            <div className="dropdown-menu">
               <Link to="/blog-grid" onClick={closeMenu}>
-                Blog Grid
+                INDIAN AND FUSION WEAR
               </Link>
               <Link to="/blog-list" onClick={closeMenu}>
-                Blog List
+                LINGERIE AND SLEEPWEAR
               </Link>
-            </div> */}
+              <Link to="/blog-grid" onClick={closeMenu}>
+                WESTERN WEAR
+              </Link>
+              <Link to="/blog-list" onClick={closeMenu}>
+                FOOTWEAR
+              </Link>
+              <Link to="/acessosries" onClick={closeMenu}>
+                BOTTOM WEARS
+              </Link>
+              <Link to="/shop-layouts" onClick={closeMenu}>
+                SPORTS WEAR AND ACTIVE WEAR
+              </Link>
+              <Link to="/product-types" onClick={closeMenu}>
+                BEAUTY AND PERSONAL CARE
+              </Link>
+              <Link to="/categories" onClick={closeMenu}>
+                JEWELLERY
+              </Link>
+            </div>
           </div>
 
           <div className="dropdown">
-            <span className="nav-link">PAGES</span>
+            <span className="nav-link">KIDS</span>
             <div className="dropdown-menu">
               <Link to="/about" onClick={closeMenu}>
-                About Us
+                BOYS CLOTHING
               </Link>
               <Link to="/contact" onClick={closeMenu}>
-                Contact
+                GIRLS CLOTHING
               </Link>
               <Link to="/faq" onClick={closeMenu}>
-                FAQ
+                FOOTWEAR
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                INFANTS
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                KIDS ACCESSSIORIES
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                TOYS AND GAMES
+              </Link>
+            </div>
+          </div>
+          <div className="dropdown">
+            <span className="nav-link">HOME DECOR</span>
+            <div className="dropdown-menu">
+              <Link to="/about" onClick={closeMenu}>
+                HANDLOOM
+              </Link>
+              <Link to="/contact" onClick={closeMenu}>
+                BATH
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                ROOM DECOR
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                KITCHEN AND TABLES
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                FLOORING
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                LAMPS AND LIGHTING
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                WEDDING AND CORPORATE GIFTING
+              </Link>
+            </div>
+          </div>
+
+          <div className="dropdown">
+            <span className="nav-link">SKINCARE PRODUCTS</span>
+            <div className="dropdown-menu">
+              <Link to="/about" onClick={closeMenu}>
+                MAKEUP
+              </Link>
+              <Link to="/contact" onClick={closeMenu}>
+                SKINCARE,BATH AND BODY
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                HAIRCARE
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                APPLIANCES
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                FRAGRANCES
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                BEAUTY GIFT AND MAKEKUP SET
+              </Link>
+              <Link to="/faq" onClick={closeMenu}>
+                MENS GROOMING
               </Link>
             </div>
           </div>
 
           <Link to="/buy" className="nav-link buy" onClick={closeMenu}>
-            BUY
+            GENZ
           </Link>
         </nav>
         {/* Right Actions */}

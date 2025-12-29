@@ -63,12 +63,28 @@ const Products = () => {
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
           <option value="all">All Categories</option>
+          <option value="genz">GenZ</option>
           <option value="mens">Mens</option>
           <option value="womens">Womens</option>
           <option value="kids">Kids</option>
-          <option value="genz">GenZ</option>
-          <option value="accessories">Accessories</option>
+          <option value="home-decor">Home decor</option>
+          <option value="skincare">Skincare Products</option>
         </select>
+
+        {/*============== sub categiries-================================================*/}
+        {/* <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="all">All Categories</option>
+          <option value="genz">GenZ</option>
+          <option value="mens">Mens</option>
+          <option value="womens">Womens</option>
+          <option value="kids">Kids</option>
+          <option value="home-decor">Home decor</option>
+          <option value="skincare">Skincare Products</option>
+        </select> */}
+        {/*============== sub categiries-================================================*/}
 
         <div className="price-filter">
           <span>₹{priceRange[0]}</span>

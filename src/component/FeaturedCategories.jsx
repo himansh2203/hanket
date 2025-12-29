@@ -4,12 +4,14 @@ import categories from "../data/categories";
 const FeaturedCategories = () => {
   return (
     <section className="fc-section">
-      <p className="fc-subtitle">WELCOME TO WOODMART</p>
+      <p className="fc-subtitle">WELCOME TO HANKET</p>
 
       <h2 className="fc-title">Featured Categories</h2>
 
       <p className="fc-desc">
-        Nec sem consequat mi gravida augue augue suspendisse condimentum
+        Discover a wide range of premium products, carefully selected for
+        quality and style.Upgrade your space with collections that truly stand
+        out.
       </p>
 
       <div className="fc-grid">
