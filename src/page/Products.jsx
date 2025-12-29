@@ -16,9 +16,10 @@ const Products = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const res = await fetch(
-        "https://mocki.io/v1/ceefb4ff-6863-4510-be37-c28b35540eab"
-      );
+      // const res = await fetch(
+      //   "https://mocki.io/v1/ceefb4ff-6863-4510-be37-c28b35540eab"
+      // );
+      const res = await fetch("/public/products.json");
       if (!res.ok) throw new Error("Failed");
       const data = await res.json();
 
