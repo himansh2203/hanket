@@ -367,3 +367,14 @@
   }
 }
 
+.cart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.price {
+  font-size: 14px;
+  font-weight: 600;
+}

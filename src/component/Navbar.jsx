@@ -4,6 +4,7 @@ import "../style/Navbar.css";
 import { Search, Heart, ShoppingCart, Menu, X } from "lucide-react";
 import logo from "../assets/hanket_image.ico";
 import { useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Favourite from "../page/Favourite";
 
@@ -11,6 +12,17 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const closeMenu = () => setOpen(false);
   const navigate = useNavigate();
+
+  const cartItems = useSelector((state) => state.cart.items);
+
+  // 🧮 cart count
+  const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
+
+  // 💰 total price
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.product.price * item.qty,
+    0
+  );
 
   return (
     <header className="wm-header">
@@ -181,54 +193,12 @@ const Navbar = () => {
 
           <Link to="/cart" className="cart nav-link" onClick={closeMenu}>
             <ShoppingCart onClick={() => navigate("/cart")} />
-            <span className="badge">0</span>
-            <span className="price">₹0.00</span>
+
+            {cartCount > 0 && <span className="badge">{cartCount}</span>}
+
+            <span className="price">₹{totalPrice.toFixed(2)}</span>
           </Link>
         </div>
-        {/* Hamburger */}
-        {/* <div className="nav-hamburger" onClick={() => setOpen(!open)}>
-          <span className={open ? "line line1" : "line"}></span>
-          <span className={open ? "line line2" : "line"}></span>
-          <span className={open ? "line line3" : "line"}></span>
-        </div> */}
-        {/* Links */}
-        {/* <ul className={open ? "nav-links nav-open" : "nav-links"}>
-          <li>
-            <Link to="/" className="nav-link" onClick={() => setOpen(false)}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              className="nav-link"
-              onClick={() => setOpen(false)}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/services"
-              className="nav-link"
-              onClick={() => setOpen(false)}
-            >
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact"
-              className="nav-link"
-              onClick={() => setOpen(false)}
-            >
-              Contact
-            </Link>
-          </li>
-        </ul> */}
-        {/* <button className="hamburger" onClick={() => setOpen(!open)}>
-          {open ? <X /> : <Menu />}
-        </button>{" "} */}
         <button className="hamburger" onClick={() => setOpen(!open)}>
           {open ? <X /> : <Menu />}
         </button>

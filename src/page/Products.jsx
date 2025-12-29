@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../style/Products.css";
 import ProductCard from "../component/ProductCard";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
+import { addToWishlist } from "../redux/wishlistSlice";
 
 const Products = () => {
   const [products, setProducts] = useState([]); // original data
@@ -12,7 +15,9 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedSubCategory, setSelectedSubCategory] = useState("all");
   const [priceRange, setPriceRange] = useState([0, 5000]);
+  const dispatch = useDispatch();
 
+  const [favourites, setFavourites] = useState([]);
   // 🔥 SUB CATEGORY MAP
   const subCategoryMap = {
     mens: [
@@ -24,7 +29,6 @@ const Products = () => {
       "fashion-accessories",
       "footwear",
     ],
-
     womens: [
       "indian-fusion-wear",
       "lingerie-sleepwear",
@@ -35,7 +39,6 @@ const Products = () => {
       "beauty-personal-care",
       "jewellery",
     ],
-
     kids: [
       "boys-clothing",
       "girls-clothing",
@@ -44,7 +47,6 @@ const Products = () => {
       "kids-accessories",
       "toys-games",
     ],
-
     "home-decor": [
       "handloom",
       "bath",
@@ -54,7 +56,6 @@ const Products = () => {
       "lamps-lighting",
       "wedding-corporate-gifting",
     ],
-
     skincare: [
       "makeup",
       "skincare-bath-body",
@@ -91,23 +92,40 @@ const Products = () => {
   useEffect(() => {
     let result = [...products];
 
-    // category filter
     if (selectedCategory !== "all") {
       result = result.filter((p) => p.category === selectedCategory);
     }
 
-    // sub category filter
     if (selectedSubCategory !== "all") {
       result = result.filter((p) => p.subcategory === selectedSubCategory);
     }
 
-    // price filter
     result = result.filter(
       (p) => p.price >= priceRange[0] && p.price <= priceRange[1]
     );
 
     setFiltered(result);
   }, [selectedCategory, selectedSubCategory, priceRange, products]);
+
+  // 🔥 Handlers
+  const handleAddToCart = (product) => {
+    dispatch(
+      addToCart({
+        product,
+        qty: 1,
+      })
+    );
+    alert(`${product.name} added to Cart`);
+  };
+
+  // const handleAddToFavourite = (product) => {
+  //   setFavourites((prev) => [...prev, product]);
+  //   alert(`${product.name} added to Favourites`);
+  // };
+  const handleAddToFavourite = (product) => {
+    dispatch(addToWishlist(product));
+    alert("Added to wishlist ❤️");
+  };
 
   return (
     <div className="products-page">
@@ -170,7 +188,14 @@ const Products = () => {
           {filtered.length === 0 ? (
             <p className="no-products">No products found</p>
           ) : (
-            filtered.map((item) => <ProductCard key={item.id} product={item} />)
+            filtered.map((item) => (
+              <ProductCard
+                key={item.id}
+                product={item}
+                onAddToCart={handleAddToCart}
+                onAddToFavourite={handleAddToFavourite}
+              />
+            ))
           )}
         </div>
       )}
