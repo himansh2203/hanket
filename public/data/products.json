@@ -6,63 +6,179 @@
       "price": 799,
       "image": "https://images.unsplash.com/photo-1520975916090-3105956dac38?w=600",
       "description": "A comfortable and stylish men's solid cotton t-shirt.",
-      "category": "mens"
+      "category": "mens",
+      "subcategory": "T-Shirts"
     },
     {
       "id": 2,
-      "name": "Women Casual Summer Dress",
-      "price": 1499,
+      "name": "Men Casual Shirt",
+      "price": 1299,
       "image": "https://images.unsplash.com/photo-1520975682031-a41a55f5f98c?w=600",
-      "description": "A comfortable and stylish women's casual summer dress.",
-      "category": "womens"
+      "description": "Casual shirt perfect for office and outings.",
+      "category": "mens",
+      "subcategory": "Shirts"
     },
     {
       "id": 3,
-      "name": "Men Slim Fit Denim Jeans",
+      "name": "Men Slim Fit Jeans",
       "price": 1999,
       "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600",
-      "description": "A comfortable and stylish men's slim fit denim jeans.",
-      "category": "mens"
+      "description": "Stylish slim fit denim jeans for men.",
+      "category": "mens",
+      "subcategory": "Jeans"
     },
     {
       "id": 4,
-      "name": "Stylish Sports Shoes",
+      "name": "Men Sports Shoes",
       "price": 2599,
       "image": "https://images.unsplash.com/photo-1528701800489-20be3c07f0c8?w=600",
-      "description": "Comfortable and trendy sports shoes for all activities.",
-      "category": "genz"
+      "description": "Comfortable and trendy sports shoes for men.",
+      "category": "mens",
+      "subcategory": "footwear"
     },
     {
       "id": 5,
-      "name": "Women Handbag Premium",
-      "price": 1899,
-      "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600",
-      "description": "A stylish and spacious women's handbag.",
-      "category": "womens"
+      "name": "Women Summer Dress",
+      "price": 1499,
+      "image": "https://images.unsplash.com/photo-1520975682031-a41a55f5f98c?w=600",
+      "description": "A comfortable and stylish summer dress for women.",
+      "category": "womens",
+      "subcategory": "Dresses"
     },
     {
       "id": 6,
-      "name": "Men Analog Wrist Watch",
-      "price": 3299,
-      "image": "https://images.unsplash.com/photo-1519741497674-611481863552?w=600",
-      "description": "A classic and elegant men's analog wrist watch.",
-      "category": "mens"
+      "name": "Women Casual Top",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=600",
+      "description": "Casual top perfect for everyday wear.",
+      "category": "womens",
+      "subcategory": "Tops"
     },
     {
       "id": 7,
-      "name": "Wireless Bluetooth Headphones",
-      "price": 2799,
-      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
-      "description": "High-quality wireless Bluetooth headphones with noise cancellation.",
-      "category": "genz"
+      "name": "Women Heels Shoes",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600",
+      "description": "Elegant heels for all occasions.",
+      "category": "womens",
+      "subcategory": "Heels"
     },
     {
       "id": 8,
-      "name": "Classic Sunglasses Unisex",
+      "name": "Women Designer Bag",
+      "price": 2499,
+      "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600",
+      "description": "Stylish and spacious designer handbag.",
+      "category": "womens",
+      "subcategory": "Bags"
+    },
+    {
+      "id": 9,
+      "name": "Kids Toy Car",
+      "price": 499,
+      "image": "https://images.unsplash.com/photo-1600181953993-3a7e6c05d25b?w=600",
+      "description": "Fun toy car for kids.",
+      "category": "kids",
+      "subcategory": "Toys"
+    },
+    {
+      "id": 10,
+      "name": "Kids T-Shirt",
+      "price": 399,
+      "image": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600",
+      "description": "Comfortable T-shirt for kids.",
+      "category": "kids",
+      "subcategory": "Clothing"
+    },
+    {
+      "id": 11,
+      "name": "Kids School Bag",
+      "price": 699,
+      "image": "https://images.unsplash.com/photo-1573497491208-6b1acb260507?w=600",
+      "description": "Durable school bag for kids.",
+      "category": "kids",
+      "subcategory": "School Items"
+    },
+    {
+      "id": 12,
+      "name": "GenZ Oversized Hoodie",
+      "price": 1599,
+      "image": "https://images.unsplash.com/photo-1600181953993-3a7e6c05d25b?w=600",
+      "description": "Trendy oversized hoodie for GenZ.",
+      "category": "genz",
+      "subcategory": "Oversized"
+    },
+    {
+      "id": 13,
+      "name": "GenZ Streetwear Jacket",
+      "price": 2399,
+      "image": "https://images.unsplash.com/photo-1520975682031-a41a55f5f98c?w=600",
+      "description": "Cool streetwear jacket.",
+      "category": "genz",
+      "subcategory": "Street Wear"
+    },
+    {
+      "id": 14,
+      "name": "GenZ Sneakers",
+      "price": 2999,
+      "image": "https://images.unsplash.com/photo-1520975916090-3105956dac38?w=600",
+      "description": "Stylish sneakers for GenZ.",
+      "category": "genz",
+      "subcategory": "Sneakers"
+    },
+    {
+      "id": 15,
+      "name": "Home Decor Wall Art",
+      "price": 1999,
+      "image": "https://images.unsplash.com/photo-1505691723518-41cbbe5d3e35?w=600",
+      "description": "Beautiful wall art for home decor.",
+      "category": "home-decor",
+      "subcategory": "Wall Art"
+    },
+    {
+      "id": 16,
+      "name": "Home Decor Table Lamp",
+      "price": 1299,
+      "image": "https://images.unsplash.com/photo-1533616688417-4c82f7f5b3f4?w=600",
+      "description": "Elegant table lamp for living room.",
+      "category": "home-decor",
+      "subcategory": "Lights"
+    },
+    {
+      "id": 17,
+      "name": "Skincare Face Wash",
+      "price": 499,
+      "image": "https://images.unsplash.com/photo-1588776814546-4f2b68b5e40d?w=600",
+      "description": "Refreshing face wash for daily use.",
+      "category": "skincare",
+      "subcategory": "Face Wash"
+    },
+    {
+      "id": 18,
+      "name": "Skincare Serum",
       "price": 999,
-      "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600",
-      "description": "Stylish and protective classic sunglasses for all",
-      "category": "kids"
+      "image": "https://images.unsplash.com/photo-1600181953993-3a7e6c05d25b?w=600",
+      "description": "Effective serum for glowing skin.",
+      "category": "skincare",
+      "subcategory": "Serum"
+    },
+    {
+      "id": 19,
+      "name": "Skincare Moisturizer",
+      "price": 799,
+      "image": "https://images.unsplash.com/photo-1520975916090-3105956dac38?w=600",
+      "description": "Hydrating moisturizer for all skin types.",
+      "category": "skincare",
+      "subcategory": "Moisturizer"
+    },
+    {
+      "id": 20,
+      "name": "Skincare Hair Oil",
+      "price": 599,
+      "image": "https://images.unsplash.com/photo-1520975682031-a41a55f5f98c?w=600",
+      "description": "Nourishing hair oil for healthy hair.",
+      "category": "skincare",
+      "subcategory": "Haircare"
     }
   ]
 }

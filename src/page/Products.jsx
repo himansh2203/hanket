@@ -10,15 +10,66 @@ const Products = () => {
 
   // filters
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedSubCategory, setSelectedSubCategory] = useState("all");
   const [priceRange, setPriceRange] = useState([0, 5000]);
+
+  // 🔥 SUB CATEGORY MAP
+  const subCategoryMap = {
+    mens: [
+      "top-wear",
+      "sports-active-wear",
+      "indian-festive-wear",
+      "bottom-wear",
+      "inner-sleepwear",
+      "fashion-accessories",
+      "footwear",
+    ],
+
+    womens: [
+      "indian-fusion-wear",
+      "lingerie-sleepwear",
+      "western-wear",
+      "footwear",
+      "bottom-wear",
+      "sports-active-wear",
+      "beauty-personal-care",
+      "jewellery",
+    ],
+
+    kids: [
+      "boys-clothing",
+      "girls-clothing",
+      "footwear",
+      "infants",
+      "kids-accessories",
+      "toys-games",
+    ],
+
+    "home-decor": [
+      "handloom",
+      "bath",
+      "room-decor",
+      "kitchen-table",
+      "flooring",
+      "lamps-lighting",
+      "wedding-corporate-gifting",
+    ],
+
+    skincare: [
+      "makeup",
+      "skincare-bath-body",
+      "haircare",
+      "appliances",
+      "fragrances",
+      "beauty-gift-sets",
+      "mens-grooming",
+    ],
+  };
 
   // 🔥 Fetch products
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      // const res = await fetch(
-      //   "https://mocki.io/v1/ceefb4ff-6863-4510-be37-c28b35540eab"
-      // );
       const res = await fetch("/data/products.json");
       if (!res.ok) throw new Error("Failed");
       const data = await res.json();
@@ -45,23 +96,30 @@ const Products = () => {
       result = result.filter((p) => p.category === selectedCategory);
     }
 
+    // sub category filter
+    if (selectedSubCategory !== "all") {
+      result = result.filter((p) => p.subcategory === selectedSubCategory);
+    }
+
     // price filter
     result = result.filter(
       (p) => p.price >= priceRange[0] && p.price <= priceRange[1]
     );
 
     setFiltered(result);
-  }, [selectedCategory, priceRange, products]);
+  }, [selectedCategory, selectedSubCategory, priceRange, products]);
 
   return (
     <div className="products-page">
-      {/* <h1 className="products-title">Our Products</h1> */}
-
       {/* 🔥 FILTER BAR */}
       <div className="filter-bar">
+        {/* CATEGORY */}
         <select
           value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
+          onChange={(e) => {
+            setSelectedCategory(e.target.value);
+            setSelectedSubCategory("all"); // reset sub category
+          }}
         >
           <option value="all">All Categories</option>
           <option value="genz">GenZ</option>
@@ -72,21 +130,22 @@ const Products = () => {
           <option value="skincare">Skincare Products</option>
         </select>
 
-        {/*============== sub categiries-================================================*/}
-        {/* <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="all">All Categories</option>
-          <option value="genz">GenZ</option>
-          <option value="mens">Mens</option>
-          <option value="womens">Womens</option>
-          <option value="kids">Kids</option>
-          <option value="home-decor">Home decor</option>
-          <option value="skincare">Skincare Products</option>
-        </select> */}
-        {/*============== sub categiries-================================================*/}
+        {/* 🔥 SUB CATEGORY */}
+        {selectedCategory !== "all" && subCategoryMap[selectedCategory] && (
+          <select
+            value={selectedSubCategory}
+            onChange={(e) => setSelectedSubCategory(e.target.value)}
+          >
+            <option value="all">All Sub Categories</option>
+            {subCategoryMap[selectedCategory].map((sub, index) => (
+              <option key={index} value={sub}>
+                {sub.replace(/-/g, " ")}
+              </option>
+            ))}
+          </select>
+        )}
 
+        {/* PRICE FILTER */}
         <div className="price-filter">
           <span>₹{priceRange[0]}</span>
           <input
