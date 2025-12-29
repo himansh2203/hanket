@@ -124,7 +124,7 @@ const Products = () => {
   // };
   const handleAddToFavourite = (product) => {
     dispatch(addToWishlist(product));
-    alert("Added to wishlist ❤️");
+    alert(`${product.name} added to Wishlist ❤️`);
   };
 
   return (

@@ -6,6 +6,7 @@ import {
   decrementQty,
   clearCart,
 } from "../redux/cartSlice";
+import "../style/Cart.css";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -18,57 +19,49 @@ const Cart = () => {
   );
 
   if (cartItems.length === 0) {
-    return <h2 style={{ padding: "20px" }}>🛒 Cart is empty</h2>;
+    return <h2 className="empty-cart">🛒 Cart is empty</h2>;
   }
 
   return (
-    <div style={{ padding: "20px", maxWidth: "700px", margin: "auto" }}>
+    <div className="cart-page">
       <h2>🛒 My Cart</h2>
-
       {cartItems.map((item) => (
-        <div
-          key={item.product.id}
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "15px",
-            borderBottom: "1px solid #ddd",
-            paddingBottom: "10px",
-          }}
-        >
+        <div key={item.product.id} className="cart-item">
+          {/* LEFT */}
           <div>
             <h4>{item.product.name}</h4>
-            <p>Price: ₹{item.product.price}</p>
+            <p>₹{item.product.price}</p>
 
-            <button onClick={() => dispatch(decrementQty(item.product.id))}>
-              -
-            </button>
-
-            <span style={{ margin: "0 10px" }}>{item.qty}</span>
-
-            <button onClick={() => dispatch(incrementQty(item.product.id))}>
-              +
-            </button>
+            {/* 🔢 QTY CONTROLS */}
+            <div className="qty-box">
+              <button onClick={() => dispatch(decrementQty(item.product.id))}>
+                -
+              </button>
+              <span>{item.qty}</span>
+              <button onClick={() => dispatch(incrementQty(item.product.id))}>
+                +
+              </button>
+            </div>
           </div>
 
-          <div>
-            <p>
-              <strong>₹{item.product.price * item.qty}</strong>
-            </p>
+          {/* RIGHT */}
+          <div className="cart-right">
+            {/* 💰 ITEM TOTAL */}
+            <p className="item-total">₹{item.product.price * item.qty}</p>
 
-            <button onClick={() => dispatch(removeFromCart(item.product.id))}>
+            <button
+              className="remove-btn"
+              onClick={() => dispatch(removeFromCart(item.product.id))}
+            >
               ❌ Remove
             </button>
           </div>
         </div>
       ))}
-
-      {/* 💰 TOTAL SECTION */}
-      <hr />
-      <h3>Total Amount: ₹{totalAmount}</h3>
-
+      {/* 💰 GRAND TOTAL */}
+      <h3 className="cart-total">Total Amount: ₹{totalAmount.toFixed(2)}</h3>
       <button
+        className="total-btn"
         style={{
           marginTop: "10px",
           background: "red",

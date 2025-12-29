@@ -24,6 +24,7 @@ import Cart from "./page/Cart";
 import ProductDesc from "./page/ProductDesc";
 import ForgotPassword from "./page/ForgetPassword";
 import Favourite from "./page/Favourite";
+import Checkout from "./page/Checkout";
 
 import Layout from "./component/Layout";
 
@@ -84,6 +85,7 @@ const App = () => {
                       element={<ForgotPassword />}
                     />
                     <Route path="/favourite" element={<Favourite />} />
+                    <Route path="/checkout" element={<Checkout />} />
 
                     {/* USER PROTECTED */}
                     <Route
