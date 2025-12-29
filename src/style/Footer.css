@@ -3,8 +3,8 @@
 /* --------------------------------------- */
 
 .footer {
-  background: #1a1a1a;
-  color: #ffffff;
+  color: #484747;
+  background: #f5f3f3;
   font-family: "Poppins", sans-serif;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .footer-section p {
-  color: #dddddd;
+  color: #484747;
   line-height: 1.6;
   font-size: 15px;
 }
@@ -35,7 +35,7 @@
 .footer-links h4 {
   font-size: 20px;
   margin-bottom: 15px;
-  color: #ffffff;
+  color: #484747;
 }
 
 .footer-links ul {
@@ -49,7 +49,7 @@
 
 .footer-links ul li a {
   text-decoration: none;
-  color: #cccccc;
+  color: #484747;
   transition: 0.3s;
   font-size: 15px;
 }
@@ -74,7 +74,7 @@
 .social-icons svg {
   cursor: pointer;
   transition: 0.3s;
-  color: #cccccc;
+  color: #484747;
 }
 
 .social-icons svg:hover {
@@ -88,7 +88,7 @@
   padding: 18px 0;
   margin-top: 40px;
 
-  color: #bbbbbb;
+  color: #484747;
   font-size: 14px;
   border-top: 1px solid #333;
 }

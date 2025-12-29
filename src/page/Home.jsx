@@ -43,7 +43,7 @@ const Home = () => {
 
       <FeaturedCategories />
       {/* ---------------- PRODUCT SLIDER SECTION ---------------- */}
-      <ProductSlider />
+      {/* <ProductSlider /> */}
     </div>
   );
 };
