@@ -2,8 +2,14 @@ import React from "react";
 import "../style/ProductCard.css";
 import { FaStar, FaShoppingCart, FaHeart } from "react-icons/fa";
 import defaultImg from "../assets/hanket_image.ico";
+import { useSelector } from "react-redux";
 
 const ProductCard = ({ product, onAddToCart, onAddToFavourite }) => {
+  const wishlistItems = useSelector((state) => state.wishlist.items);
+
+  // 🔥 check product already wishlisted?
+  const isWishlisted = wishlistItems.some((item) => item.id === product.id);
+
   if (!product) return null;
 
   return (
@@ -20,9 +26,8 @@ const ProductCard = ({ product, onAddToCart, onAddToFavourite }) => {
         />
         {/* FAVORITE ICON */}
         <span
-          className="pcard-fav"
-          onClick={() => onAddToFavourite && onAddToFavourite(product)}
-          title="Add to Favourite"
+          className={`pcard-fav ${isWishlisted ? "active" : ""}`}
+          onClick={() => onAddToFavourite(product)}
         >
           <FaHeart />
         </span>

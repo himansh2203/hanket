@@ -188,7 +188,7 @@ const Navbar = () => {
           </div>
 
           <Link
-            to="/bproducts?category=genz"
+            to="/products?category=genz"
             className="nav-link buy"
             onClick={closeMenu}
           >
@@ -201,7 +201,7 @@ const Navbar = () => {
             LOGIN / REGISTER
           </Link>
 
-          <Search className="icon" />
+          {/* <Search className="icon" /> */}
 
           <Link to="/favourite" className="cart nav-link" onClick={closeMenu}>
             <Heart className="icon" onClick={() => navigate("/favourite")} />

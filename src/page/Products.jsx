@@ -122,12 +122,10 @@ const Products = () => {
   // 🔹 Handlers
   const handleAddToCart = (product) => {
     dispatch(addToCart({ product, qty: 1 }));
-    alert(`${product.name} added to Cart`);
   };
 
   const handleAddToFavourite = (product) => {
     dispatch(addToWishlist(product));
-    alert(`${product.name} added to Wishlist ❤️`);
   };
 
   return (
