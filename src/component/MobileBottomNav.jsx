@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Home, Search, ShoppingCart, Package, User } from "lucide-react";
 import "../style/MobileBottomNav.css";
+import { Heart } from "lucide-react";
 
 export default function MobileBottomNav() {
   return (
@@ -10,9 +11,9 @@ export default function MobileBottomNav() {
         <span>Home</span>
       </NavLink>
 
-      <NavLink to="/search" className="mbn-item">
-        <Search size={22} />
-        <span>Search</span>
+      <NavLink to="/favourite" className="mbn-item fav-only">
+        <Heart size={22} />
+        <span>Wishlist</span>
       </NavLink>
 
       <NavLink to="/cart" className="mbn-item">
