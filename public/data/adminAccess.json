@@ -1,0 +1,14 @@
+{
+  "admins": [
+    {
+      "username": "admin",
+      "password": "admin123",
+      "role": "SUPER_ADMIN"
+    },
+    {
+      "username": "himanshu",
+      "password": "himu@123",
+      "role": "ADMIN"
+    }
+  ]
+}

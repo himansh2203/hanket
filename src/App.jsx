@@ -34,6 +34,7 @@ import Dashboard from "./admin/Dashboard";
 import AdminProducts from "./admin/Products";
 
 import { AuthProvider, AuthContext } from "./context/AuthContext";
+import Order from "./page/Order";
 
 // ---------------- PROTECTED ROUTES ----------------
 const UserProtectedRoute = ({ children }) => {
@@ -41,12 +42,9 @@ const UserProtectedRoute = ({ children }) => {
   return user ? children : <Navigate to="/login" replace />;
 };
 
-// const AdminProtectedRoute = ({ children }) => {
-//   const token = localStorage.getItem("token"); // JWT
-//   return token ? children : <Navigate to="/login" replace />;
-// };
 const AdminProtectedRoute = ({ children }) => {
-  return children;
+  const token = localStorage.getItem("token"); // JWT
+  return token ? children : <Navigate to="/login" replace />;
 };
 
 // -------------------------------------------------
@@ -86,6 +84,7 @@ const App = () => {
                     />
                     <Route path="/favourite" element={<Favourite />} />
                     <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/order" element={<Order />} />
 
                     {/* USER PROTECTED */}
                     <Route

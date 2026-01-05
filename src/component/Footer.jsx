@@ -97,9 +97,7 @@ const Footer = () => {
       </div>
 
       {/* -------- BOTTOM BAR -------- */}
-      <div className="footer-bottom">
-        © {new Date().getFullYear()} HANKET — All Rights Reserved.
-      </div>
+      <div className="footer-bottom">© 2025 HANKET — All Rights Reserved.</div>
     </footer>
   );
 };

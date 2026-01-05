@@ -48,16 +48,22 @@ const ProductSlider = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        const formatted = data.map((item) => ({
+        const response = await fetch("/data/products.json");
+        const json = await response.json();
+
+        // ✅ correct array
+        const formatted = json.products.map((item) => ({
           id: item.id,
-          name: item.title,
-          price: Math.round(item.price * 80),
+          name: item.name,
+          price: item.price,
           image: item.image,
-          rating: item.rating?.rate || 4.5,
-          isNew: Math.random() < 0.3, // randomly mark some products as new
+          description: item.description,
+          category: item.category,
+          subcategory: item.subcategory,
+          rating: 4.5, // static since json me rating nahi hai
+          isNew: Math.random() < 0.3,
         }));
+
         setProducts(formatted.slice(0, 6));
       } catch (err) {
         console.error("Failed to fetch products:", err);
