@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
+// ---------------- USER PAGES ----------------
 import Home from "./page/Home";
 import About from "./page/About";
 import Contact from "./page/Contact";
@@ -25,26 +26,32 @@ import Favourite from "./page/Favourite";
 import Checkout from "./page/Checkout";
 import Order from "./page/Order";
 
-import Layout from "./component/Layout";
-
-// 🔥 ADMIN
+// ---------------- ADMIN PAGES ----------------
 import AdminLayout from "./admin/AdminLayout";
 import Dashboard from "./admin/Dashboard";
 import AdminProducts from "./admin/Products";
+import AdminLogin from "./admin/AdminLogin";
+import Orders from "./admin/Orders";
 
+// ---------------- LAYOUT ----------------
+import Layout from "./component/Layout";
+
+// ---------------- AUTH ----------------
 import { AuthProvider, AuthContext } from "./context/AuthContext";
 
-// ---------------- PROTECTED ROUTES ----------------
+// ---------------- USER PROTECTED ----------------
 const UserProtectedRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
   return user ? children : <Navigate to="/login" replace />;
 };
 
+// ---------------- ADMIN PROTECTED ----------------
 const AdminProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/login" replace />;
+  const admin = localStorage.getItem("admin");
+  return admin ? children : <Navigate to="/admin/login" replace />;
 };
-// -------------------------------------------------
+
+// =================================================
 
 const App = () => {
   return (
@@ -54,7 +61,6 @@ const App = () => {
           <Routes>
             {/* ================= USER SITE ================= */}
             <Route path="/" element={<Layout />}>
-              {/* HOME */}
               <Route index element={<Home />} />
 
               {/* PUBLIC ROUTES */}
@@ -89,6 +95,9 @@ const App = () => {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
 
+            {/* ================= ADMIN LOGIN ================= */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+
             {/* ================= ADMIN PANEL ================= */}
             <Route
               path="/admin"
@@ -100,6 +109,7 @@ const App = () => {
             >
               <Route index element={<Dashboard />} />
               <Route path="products" element={<AdminProducts />} />
+              <Route path="orders" element={<Orders />} />
             </Route>
           </Routes>
         </Suspense>

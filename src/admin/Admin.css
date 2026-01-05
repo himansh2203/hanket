@@ -1,90 +1,522 @@
+/* =====================
+   ROOT THEME VARIABLES
+===================== */
+:root {
+  --bg-main: #0b1020;
+  --bg-sidebar: #0f172a;
+  --bg-card: rgba(255, 255, 255, 0.06);
+  --bg-glass: rgba(255, 255, 255, 0.08);
 
-.ap-root{display:flex;min-height:100vh;font-family:Inter,Arial,sans-serif;background:#0b0f1a;color:#e6e8ef}
-.ap-sidebar{width:240px;background:#0f1526;border-right:1px solid #1c2542}
-.ap-brand{padding:18px;font-weight:700;font-size:18px}
-.ap-nav{display:flex;flex-direction:column}
-.ap-nav a{color:#c7cbea;text-decoration:none;padding:12px 18px}
-.ap-nav a:hover{background:#151c36}
+  --border: rgba(255, 255, 255, 0.12);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --primary: #6366f1;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
 
-.ap-main{flex:1;display:flex;flex-direction:column}
-.ap-topbar{height:64px;display:flex;justify-content:space-between;align-items:center;padding:0 16px;background:#0f1526;border-bottom:1px solid #1c2542}
-.ap-search{background:#0b0f1a;border:1px solid #1c2542;color:#e6e8ef;border-radius:8px;padding:8px 12px;width:280px}
-.ap-user{opacity:.9}
+  --radius: 14px;
+  --blur: blur(14px);
+}
 
-.ap-content{padding:20px}
-.ap-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.ap-card{background:#0f1526;border:1px solid #1c2542;border-radius:14px;padding:16px}
-.ap-card-title{opacity:.7;font-size:13px}
-.ap-card-value{font-size:24px;font-weight:700;margin-top:6px}
+/* =====================
+   GLOBAL
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-.ap-section-title{margin:20px 0 10px}
-.ap-table{width:100%;border-collapse:collapse;background:#0f1526;border:1px solid #1c2542;border-radius:14px;overflow:hidden}
-.ap-table th,.ap-table td{padding:12px 14px;border-bottom:1px solid #1c2542;text-align:left}
-.ap-table th{opacity:.7}
+body {
+  font-family: "Inter", Arial, sans-serif;
+}
 
-.ap-badge{padding:4px 10px;border-radius:999px;font-size:12px}
-.ap-badge.success{background:#0f5132;color:#d1fae5}
-.ap-badge.pending{background:#664d03;color:#fff3cd}
-
-@media(max-width:900px){.ap-sidebar{display:none}.ap-cards{grid-template-columns:repeat(2,1fr)}}
-
+/* =====================
+   LAYOUT
+===================== */
 .ap-root {
   display: flex;
-  height: 100vh;
-  font-family: Inter, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #020617, #0b1020);
+  color: var(--text-main);
 }
 
+/* =====================
+   SIDEBAR
+===================== */
 .ap-sidebar {
-  width: 220px;
-  background: #0f172a;
+  width: 240px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  padding: 22px;
+}
+
+.ap-brand {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 30px;
   color: white;
-  padding: 20px;
 }
 
-.ap-sidebar a {
-  display: block;
-  color: #cbd5f5;
-  margin: 12px 0;
+.ap-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ap-nav a {
+  padding: 12px 14px;
+  border-radius: 10px;
   text-decoration: none;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
 }
 
+.ap-nav a:hover {
+  background: var(--bg-glass);
+  color: white;
+  transform: translateX(4px);
+}
+
+/* =====================
+   MAIN AREA
+===================== */
 .ap-main {
   flex: 1;
-  padding: 30px;
-  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
 }
 
-.ap-cards {
+/* =====================
+   TOPBAR
+===================== */
+.ap-topbar {
+  height: 70px;
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: var(--blur);
+  border-bottom: 1px solid var(--border);
+}
+
+.ap-search {
+  width: 280px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-main);
+}
+
+.ap-search::placeholder {
+  color: var(--text-muted);
+}
+
+.ap-user {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* =====================
+   CONTENT
+===================== */
+.ap-content {
+  padding: 26px;
+}
+
+/* =====================
+   CARDS
+===================== */
+.ap-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 30px;
 }
 
 .ap-card {
-  background: white;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 20px;
-  border-radius: 10px;
-  flex: 1;
-  font-weight: bold;
+  backdrop-filter: var(--blur);
+  transition: all 0.3s ease;
+}
+
+.ap-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.ap-card-title {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.ap-card-value {
+  font-size: 26px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+/* =====================
+   TABLE
+===================== */
+.ap-section-title {
+  font-size: 18px;
+  margin: 20px 0 12px;
 }
 
 .ap-table {
   width: 100%;
-  margin-top: 20px;
   border-collapse: collapse;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  backdrop-filter: var(--blur);
 }
 
-.ap-table th, .ap-table td {
-  border-bottom: 1px solid #ddd;
-  padding: 10px;
+.ap-table th,
+.ap-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 14px;
 }
 
-.ap-chart {
+.ap-table th {
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ap-table tr:hover td {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* =====================
+   BADGES
+===================== */
+.ap-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ap-badge.success {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--success);
+}
+
+.ap-badge.pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--warning);
+}
+
+/* =====================
+   LOGIN PAGE
+===================== */
+.admin-login {
+  min-height: 100vh;
   display: flex;
-  gap: 10px;
-  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #020617, #0b1020);
 }
 
-.ap-chart div {
-  width: 60px;
-  background: #6366f1;
+.admin-login-box {
+  width: 360px;
+  padding: 30px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  backdrop-filter: var(--blur);
+}
+
+.admin-login-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin-login-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: white;
+}
+
+.admin-login-box button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.admin-login-box button:hover {
+  opacity: 0.85;
+}
+
+.error {
+  color: var(--danger);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 900px) {
+  .ap-sidebar {
+    display: none;
+  }
+
+  .ap-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* =====================
+   MOBILE RESPONSIVE
+===================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .ap-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ap-search {
+    width: 220px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  /* Layout */
+  .ap-root {
+    flex-direction: column;
+  }
+
+  /* Sidebar -> Top Menu */
+  .ap-sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 240px;
+    z-index: 1000;
+    transition: left 0.35s ease;
+  }
+
+  .ap-sidebar.open {
+    left: 0;
+  }
+
+  /* Overlay */
+  .ap-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 900;
+  }
+
+  /* Topbar */
+  .ap-topbar {
+    padding: 0 16px;
+  }
+
+  .ap-search {
+    width: 100%;
+    margin-right: 10px;
+  }
+
+  /* Content */
+  .ap-content {
+    padding: 16px;
+  }
+
+  /* Cards */
+  .ap-cards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* Table scroll */
+  .ap-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Hide username */
+  .ap-user span {
+    display: none;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+  .ap-search {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .ap-card-value {
+    font-size: 22px;
+  }
+
+  .ap-brand {
+    font-size: 18px;
+  }
+}
+
+/* =====================
+   PRODUCTS PAGE
+===================== */
+
+.ap-content h2 {
+  font-size: 22px;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+/* =====================
+   FORM (ADD / EDIT)
+===================== */
+.ap-card form,
+.ap-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.ap-card input,
+.ap-card textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  font-size: 14px;
+}
+
+.ap-card textarea {
+  grid-column: span 3;
+  resize: none;
+  min-height: 90px;
+}
+
+.ap-card input::placeholder,
+.ap-card textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Button */
+.ap-card button {
+  grid-column: span 3;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.ap-card button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* =====================
+   PRODUCT TABLE
+===================== */
+.ap-table {
+  margin-top: 24px;
+}
+
+.ap-table td img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Action buttons */
+.ap-table button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 6px;
+  transition: 0.25s;
+}
+
+.ap-table button:first-child {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+}
+
+.ap-table button:last-child {
+  background: rgba(239, 68, 68, 0.15);
+  color: #fca5a5;
+}
+
+.ap-table button:hover {
+  transform: scale(1.05);
+}
+
+/* =====================
+   EMPTY STATE
+===================== */
+.ap-empty {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 1024px) {
+  .ap-card {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ap-card textarea,
+  .ap-card button {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .ap-card {
+    grid-template-columns: 1fr;
+  }
+
+  .ap-card textarea,
+  .ap-card button {
+    grid-column: span 1;
+  }
+
+  .ap-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }

@@ -1,0 +1,12 @@
+[
+  {
+    "email": "admin@hanket.com",
+    "password": "admin123",
+    "name": "Super Admin"
+  },
+  {
+    "email": "manager@hanket.com",
+    "password": "manager123",
+    "name": "Manager"
+  }
+]
