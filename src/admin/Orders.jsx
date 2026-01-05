@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 /* ================= AUTH ================= */
 const authHeader = () => ({
@@ -24,11 +24,7 @@ export default function Orders() {
   const [selectedOrder, setSelectedOrder] = useState(null);
 
   /* ================= LOAD ================= */
-  useEffect(() => {
-    loadOrders();
-  }, [page]);
-
-  const loadOrders = async () => {
+  const loadOrders = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch(`/api/admin/orders?page=${page}&size=8`, {
@@ -46,12 +42,17 @@ export default function Orders() {
       }
 
       setFilteredOrders(data.content || data);
-    } catch (e) {
+    } catch (err) {
+      console.error("Failed to load orders:", err);
       alert("Failed to load orders");
     } finally {
       setLoading(false);
     }
-  };
+  }, [page]);
+
+  useEffect(() => {
+    loadOrders();
+  }, [loadOrders]);
 
   /* ================= SEARCH & FILTER ================= */
   useEffect(() => {

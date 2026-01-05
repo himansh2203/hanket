@@ -22,21 +22,29 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log("[Dashboard] Fetching stats and orders...");
+
         const [statsData, ordersData] = await Promise.all([
-          getStats().catch(() => ({
-            sales: 0,
-            orders: 0,
-            users: 0,
-            products: 0,
-          })),
-          getOrders().catch(() => []),
+          getStats().catch((e) => {
+            console.error("[Dashboard] getStats failed:", e);
+            return { sales: 0, orders: 0, users: 0, products: 0 };
+          }),
+          getOrders().catch((e) => {
+            console.error("[Dashboard] getOrders failed:", e);
+            return [];
+          }),
         ]);
 
-        setStats(statsData);
+        console.log("[Dashboard] Stats:", statsData, "Orders:", ordersData);
+
+        setStats(statsData || { sales: 0, orders: 0, users: 0, products: 0 });
         setOrders(Array.isArray(ordersData) ? ordersData : []);
+        setError(null);
       } catch (err) {
-        console.error("Dashboard error:", err);
+        console.error("[Dashboard] Fatal error:", err);
         setError(err.message);
+        setStats({ sales: 0, orders: 0, users: 0, products: 0 });
+        setOrders([]);
       } finally {
         setLoading(false);
       }
@@ -45,14 +53,24 @@ export default function Dashboard() {
     fetchData();
   }, []);
 
-  if (loading) return <p>Loading dashboard...</p>;
+  if (loading) {
+    return (
+      <div className="ap-content">
+        <p>Loading dashboard...</p>
+      </div>
+    );
+  }
 
   if (error) {
-    return <p>Error loading dashboard: {error}</p>;
+    return (
+      <div className="ap-content">
+        <p style={{ color: "red" }}>Error loading dashboard: {error}</p>
+      </div>
+    );
   }
 
   return (
-    <>
+    <div>
       <div className="ap-cards">
         <Card title="Sales" value={`₹${stats?.sales || 0}`} />
         <Card title="Orders" value={stats?.orders || 0} />
@@ -94,6 +112,6 @@ export default function Dashboard() {
       ) : (
         <p>No orders yet</p>
       )}
-    </>
+    </div>
   );
 }
