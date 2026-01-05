@@ -9,8 +9,6 @@ import {
 import Home from "./page/Home";
 import About from "./page/About";
 import Contact from "./page/Contact";
-import Footer from "./component/Footer";
-import Header from "./component/Header";
 import Login from "./page/Login";
 import SignUp from "./page/SignUp";
 import Services from "./page/Services";
@@ -25,16 +23,16 @@ import ProductDesc from "./page/ProductDesc";
 import ForgotPassword from "./page/ForgetPassword";
 import Favourite from "./page/Favourite";
 import Checkout from "./page/Checkout";
+import Order from "./page/Order";
 
 import Layout from "./component/Layout";
 
-// 🔥 ADMIN IMPORTS
+// 🔥 ADMIN
 import AdminLayout from "./admin/AdminLayout";
 import Dashboard from "./admin/Dashboard";
 import AdminProducts from "./admin/Products";
 
 import { AuthProvider, AuthContext } from "./context/AuthContext";
-import Order from "./page/Order";
 
 // ---------------- PROTECTED ROUTES ----------------
 const UserProtectedRoute = ({ children }) => {
@@ -43,10 +41,9 @@ const UserProtectedRoute = ({ children }) => {
 };
 
 const AdminProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token"); // JWT
+  const token = localStorage.getItem("token");
   return token ? children : <Navigate to="/login" replace />;
 };
-
 // -------------------------------------------------
 
 const App = () => {
@@ -56,54 +53,41 @@ const App = () => {
         <Suspense fallback={<div className="page-loader">Loading...</div>}>
           <Routes>
             {/* ================= USER SITE ================= */}
-            <Route
-              path="/*"
-              element={
-                <>
-                  <Layout />
-                  {/* <Header /> */}
+            <Route path="/" element={<Layout />}>
+              {/* HOME */}
+              <Route index element={<Home />} />
 
-                  <Routes>
-                    {/* PUBLIC */}
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/services" element={<Services />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/faq" element={<FAQ />} />
-                    <Route path="/help" element={<HelpCenter />} />
-                    <Route path="/order-tracking" element={<OrderTracking />} />
-                    <Route path="/shipping-info" element={<ShippingInfo />} />
-                    <Route path="/cart" element={<Cart />} />
-                    <Route path="/product/:id" element={<ProductDesc />} />
-                    <Route
-                      path="/forgot-password"
-                      element={<ForgotPassword />}
-                    />
-                    <Route path="/favourite" element={<Favourite />} />
-                    <Route path="/checkout" element={<Checkout />} />
-                    <Route path="/order" element={<Order />} />
+              {/* PUBLIC ROUTES */}
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<SignUp />} />
+              <Route path="products" element={<Products />} />
+              <Route path="about" element={<About />} />
+              <Route path="services" element={<Services />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="faq" element={<FAQ />} />
+              <Route path="help" element={<HelpCenter />} />
+              <Route path="order-tracking" element={<OrderTracking />} />
+              <Route path="shipping-info" element={<ShippingInfo />} />
+              <Route path="cart" element={<Cart />} />
+              <Route path="product/:id" element={<ProductDesc />} />
+              <Route path="forgot-password" element={<ForgotPassword />} />
+              <Route path="favourite" element={<Favourite />} />
+              <Route path="checkout" element={<Checkout />} />
+              <Route path="order" element={<Order />} />
 
-                    {/* USER PROTECTED */}
-                    <Route
-                      path="/profile"
-                      element={
-                        <UserProtectedRoute>
-                          <Profile />
-                        </UserProtectedRoute>
-                      }
-                    />
+              {/* USER PROTECTED */}
+              <Route
+                path="profile"
+                element={
+                  <UserProtectedRoute>
+                    <Profile />
+                  </UserProtectedRoute>
+                }
+              />
 
-                    {/* 404 */}
-                    <Route path="*" element={<Navigate to="/" />} />
-                  </Routes>
-
-                  <Footer />
-                </>
-              }
-            />
+              {/* 404 */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Route>
 
             {/* ================= ADMIN PANEL ================= */}
             <Route

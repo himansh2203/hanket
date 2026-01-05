@@ -5,16 +5,36 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-body {
+
+html, body {
+  height: 100%;
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-family: "Poppins", sans-serif;
-   /* background: linear-gradient(270deg, #ffdee9 5%, #b5fffc 150%); */
 }
 
-/* index.css */
+body {
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ROOT */
+#root {
+  min-height: 100vh;
+}
+
+/* ===== LAYOUT FIX (STICKY FOOTER) ===== */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CONTENT WILL PUSH FOOTER DOWN */
+.main-content {
+  flex: 1;
+}
+
+/* ===== MOBILE FIX FOR BOTTOM NAV ===== */
 @media (max-width: 768px) {
-  body {
-    padding-bottom: 70px;
+  .main-content {
+    padding-bottom: 70px; /* height of MobileBottomNav */
   }
 }
