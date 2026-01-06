@@ -4,7 +4,7 @@ import {
   addProduct,
   deleteProduct,
   updateProduct,
-  isBackendAvailable,
+  DEMO_MODE,
 } from "./adminApi";
 
 const subCategoryMap = {
@@ -139,17 +139,7 @@ export default function Products() {
     }
 
     try {
-      // If backend may be used (even when DEMO_MODE is false), confirm it's reachable first.
-      const ping = await isBackendAvailable();
-      if (!ping.ok) {
-        const reason = ping.status
-          ? `status ${ping.status}`
-          : ping.message || "unreachable";
-        alert(
-          `Backend not reachable (${reason}).\nStart your backend at http://localhost:8080 or enable CORS for http://localhost:5173.`
-        );
-        return;
-      }
+      // Attempt to add/update via API. `adminApi` will fallback to DEMO mode if configured.
 
       const payload = {
         name: form.name.trim(),
@@ -225,21 +215,23 @@ export default function Products() {
     <>
       <h2>Products</h2>
 
-      <div
-        style={{
-          backgroundColor: "#fff3cd",
-          border: "1px solid #ffc107",
-          borderRadius: "4px",
-          padding: "12px",
-          marginBottom: "20px",
-          color: "#856404",
-          fontSize: "14px",
-        }}
-      >
-        <strong>📌 Demo Mode Active:</strong> Products are stored locally in
-        your browser. When backend is ready, change DEMO_MODE to false in
-        src/admin/adminApi.js
-      </div>
+      {DEMO_MODE ? (
+        <div
+          style={{
+            backgroundColor: "#fff3cd",
+            border: "1px solid #ffc107",
+            borderRadius: "4px",
+            padding: "12px",
+            marginBottom: "20px",
+            color: "#856404",
+            fontSize: "14px",
+          }}
+        >
+          <strong>📌 Demo Mode Active:</strong> Products are stored locally in
+          your browser. When backend is ready, change DEMO_MODE to false in
+          src/admin/adminApi.js
+        </div>
+      ) : null}
 
       {/* ADD / EDIT FORM */}
       <form
@@ -343,6 +335,7 @@ export default function Products() {
       <table className="ap-table">
         <thead>
           <tr>
+            <th>Image</th>
             <th>Name</th>
             <th>Category</th>
             <th>Price</th>
@@ -353,6 +346,25 @@ export default function Products() {
         <tbody>
           {products.map((p) => (
             <tr key={p.id}>
+              <td>
+                {p.imageUrl ? (
+                  <img
+                    src={
+                      p.imageUrl.startsWith("/")
+                        ? `http://localhost:8080${p.imageUrl}`
+                        : p.imageUrl
+                    }
+                    alt={p.name}
+                    style={{
+                      maxWidth: "60px",
+                      maxHeight: "60px",
+                      borderRadius: "4px",
+                    }}
+                  />
+                ) : (
+                  <span style={{ color: "#999" }}>No image</span>
+                )}
+              </td>
               <td>{p.name}</td>
               <td>{p.category}</td>
               <td>₹{p.price}</td>

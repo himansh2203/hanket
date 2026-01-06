@@ -14,7 +14,35 @@ export default function AdminLogin() {
     setError("");
 
     try {
-      // 🔥 public/admins.json se read
+      // First, try to authenticate with the real backend
+      console.log("[AdminLogin] Attempting backend login...");
+      const backendRes = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: email, password }),
+      });
+
+      if (backendRes.ok) {
+        // Backend login succeeded - save the real JWT token
+        const backendData = await backendRes.json();
+        const realToken = backendData.token;
+        console.log("[AdminLogin] Backend login success, got real JWT token");
+
+        localStorage.setItem(
+          "admin",
+          JSON.stringify({
+            email,
+            role: "ADMIN",
+            loginTime: Date.now(),
+          })
+        );
+        localStorage.setItem("token", realToken);
+        navigate("/admin", { replace: true });
+        return;
+      }
+
+      // Backend login failed or unavailable - fall back to local admin.json validation
+      console.warn("[AdminLogin] Backend unavailable, using local admin.json");
       const res = await fetch("/data/admins.json");
       const admins = await res.json();
 
@@ -27,7 +55,7 @@ export default function AdminLogin() {
         return;
       }
 
-      // ✅ ADMIN SESSION SAVE
+      // Save local admin session with demo token for demo mode
       localStorage.setItem(
         "admin",
         JSON.stringify({
@@ -36,10 +64,10 @@ export default function AdminLogin() {
           loginTime: Date.now(),
         })
       );
-
-      // 🔥 REDIRECT TO ADMIN DASHBOARD
+      localStorage.setItem("token", "demo-admin-token");
       navigate("/admin", { replace: true });
     } catch (err) {
+      console.error("[AdminLogin] Error:", err);
       setError("Something went wrong. Try again.");
     }
   };

@@ -69,16 +69,25 @@ const Products = () => {
     ],
   };
 
-  // 🔥 Fetch products
+  // 🔥 Fetch products from backend API
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/data/products.json");
-      if (!res.ok) throw new Error("Failed");
+      const res = await fetch("http://localhost:8080/api/products");
+      if (!res.ok) throw new Error("Failed to fetch from backend");
       const data = await res.json();
-      setProducts(data.products || []);
+      setProducts(Array.isArray(data) ? data : []);
     } catch (err) {
-      setError("Failed to load products");
+      console.warn("Backend unavailable, trying local JSON:", err.message);
+      // Fallback to local JSON if backend is unavailable
+      try {
+        const res = await fetch("/data/products.json");
+        if (!res.ok) throw new Error("Failed");
+        const data = await res.json();
+        setProducts(data.products || []);
+      } catch (fallbackErr) {
+        setError("Failed to load products");
+      }
     } finally {
       setLoading(false);
     }

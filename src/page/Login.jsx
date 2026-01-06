@@ -1,18 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "../style/Login.css";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const authState = useSelector((s) => s.auth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Basic validation
     if (!email || !password) {
@@ -24,12 +25,11 @@ const Login = () => {
       return;
     }
 
-    // Dummy login logic (replace with API)
-    if (email === "test@example.com" && password === "123456") {
-      login({ name: "John Doe", email, phone: "+91 9876543210" });
+    try {
+      const res = await dispatch(login({ username: email, password })).unwrap();
       navigate("/profile");
-    } else {
-      setError("Invalid credentials.");
+    } catch (err) {
+      setError(err || "Invalid credentials");
     }
   };
 

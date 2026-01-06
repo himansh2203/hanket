@@ -1,11 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/Signup.css";
-import { AuthContext } from "../context/AuthContext";
+import { useDispatch } from "react-redux";
+import { signup } from "../redux/authSlice";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { signup } = useContext(AuthContext);
+  const dispatch = useDispatch();
 
   const [data, setData] = useState({
     name: "",
@@ -21,7 +22,7 @@ const Signup = () => {
     setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validation
@@ -42,9 +43,14 @@ const Signup = () => {
       return;
     }
 
-    // Dummy signup logic (replace with API)
-    signup({ name: data.name, email: data.email });
-    navigate("/profile");
+    try {
+      await dispatch(
+        signup({ name: data.name, email: data.email, password: data.password })
+      ).unwrap();
+      navigate("/profile");
+    } catch (err) {
+      setError(err || "Failed to signup");
+    }
   };
 
   return (

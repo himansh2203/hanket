@@ -5,12 +5,22 @@ const API_URL = "http://localhost:8080/api/products";
 // Demo mode - when backend is unavailable, use localStorage
 // NOTE: Set to `false` only when your backend is running and tested.
 // Keeping `true` helps during submission when backend may be offline.
-const DEMO_MODE = false; // Set to false when real backend is ready
+export const DEMO_MODE = false; // Set to false to use real backend
 
-const authHeader = () => ({
-  "Content-Type": "application/json",
-  Authorization: `Bearer ${localStorage.getItem("token")}`,
-});
+const authHeader = () => {
+  const token = localStorage.getItem("token");
+  const headers = { "Content-Type": "application/json" };
+  if (token) headers.Authorization = `Bearer ${token}`;
+  return headers;
+};
+
+// If an `admin` session exists but no token was saved (demo/admin login),
+// create a short-lived demo token so admin API calls succeed in the demo.
+const ensureDemoTokenFromAdmin = () => {
+  if (!localStorage.getItem("token") && localStorage.getItem("admin")) {
+    localStorage.setItem("token", "demo-admin-token");
+  }
+};
 
 const fetchOptions = (options = {}) => ({
   ...options,
@@ -144,6 +154,7 @@ export const isBackendAvailable = async (timeoutMs = 2500) => {
 ===================== */
 export const getStats = async () => {
   try {
+    ensureDemoTokenFromAdmin();
     const data = await safeFetch(`${ADMIN_API}/stats`, {
       headers: authHeader(),
     });
@@ -156,6 +167,7 @@ export const getStats = async () => {
 
 export const getOrders = async () => {
   try {
+    ensureDemoTokenFromAdmin();
     const data = await safeFetch(`${ADMIN_API}/orders`, {
       headers: authHeader(),
     });
@@ -171,6 +183,7 @@ export const getOrders = async () => {
 ===================== */
 export const getProducts = async () => {
   try {
+    ensureDemoTokenFromAdmin();
     const data = await safeFetch(PRODUCT_API, { headers: authHeader() });
     return Array.isArray(data) ? data : [];
   } catch (err) {
@@ -185,6 +198,15 @@ export const getProducts = async () => {
 export const addProduct = async (product) => {
   try {
     console.debug("[API] Adding product:", product);
+    // Ensure demo token exists when admin signed in via the local admin login
+    ensureDemoTokenFromAdmin();
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error(
+        "Unauthorized: missing token. Please login as admin before adding products."
+      );
+    }
 
     // Use FormData for file upload instead of JSON
     const formData = new FormData();
@@ -219,7 +241,13 @@ export const addProduct = async (product) => {
 
     if (!res.ok) {
       const errorData = await safeJsonParse(res);
-      throw new Error(errorData?.message || `HTTP ${res.status}`);
+      const msg = errorData?.message || `HTTP ${res.status}`;
+      if (res.status === 403) {
+        throw new Error(
+          `Forbidden: ${msg} — your token may be invalid or you lack permissions.`
+        );
+      }
+      throw new Error(msg);
     }
 
     const data = await safeJsonParse(res);
@@ -243,6 +271,16 @@ export const addProduct = async (product) => {
 export const updateProduct = async (id, product) => {
   try {
     console.debug("[API] Updating product:", id, product);
+
+    // Ensure demo token exists when admin signed in via the local admin login
+    ensureDemoTokenFromAdmin();
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error(
+        "Unauthorized: missing token. Please login as admin before updating products."
+      );
+    }
 
     // Use FormData for file upload instead of JSON
     const formData = new FormData();
@@ -277,7 +315,13 @@ export const updateProduct = async (id, product) => {
 
     if (!res.ok) {
       const errorData = await safeJsonParse(res);
-      throw new Error(errorData?.message || `HTTP ${res.status}`);
+      const msg = errorData?.message || `HTTP ${res.status}`;
+      if (res.status === 403) {
+        throw new Error(
+          `Forbidden: ${msg} — your token may be invalid or you lack permissions.`
+        );
+      }
+      throw new Error(msg);
     }
 
     const data = await safeJsonParse(res);
@@ -301,6 +345,7 @@ export const updateProduct = async (id, product) => {
 export const deleteProduct = async (id) => {
   try {
     console.debug("[API] Deleting product:", id);
+    ensureDemoTokenFromAdmin();
     const data = await safeFetch(`${PRODUCT_API}/${id}`, {
       method: "DELETE",
       headers: authHeader(),

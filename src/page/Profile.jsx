@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../style/Profile.css";
 // import API from "../services/api"; // ← Replace with backend API
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../redux/authSlice";
 
 const Profile = () => {
   const [profileData, setProfileData] = useState(null);
@@ -9,6 +12,7 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editableData, setEditableData] = useState({});
   const [fieldStatus, setFieldStatus] = useState({}); // success/error per field
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchProfile();
@@ -17,17 +21,31 @@ const Profile = () => {
   const fetchProfile = async () => {
     try {
       setLoading(true);
-      const dummyData = {
-        name: "John Doe",
-        email: "johndoe@example.com",
-        phone: "+91 9876543210",
-        address: "123, Premium Street, Delhi, India",
-        joined: "2024-03-15",
-        orders: 12,
-        wishlist: 5,
-      };
-      setProfileData(dummyData);
-      setEditableData(dummyData);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setError("Not authenticated");
+        setLoading(false);
+        return;
+      }
+      const res = await axios.get("http://localhost:8080/api/user/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = res.data;
+      setProfileData({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        address: data.address || "",
+        joined: data.createdAt || "",
+        orders: 0,
+        wishlist: 0,
+      });
+      setEditableData({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        address: data.address || "",
+      });
     } catch (err) {
       console.error(err);
       setError("Failed to load profile. Please try again.");
@@ -149,7 +167,15 @@ const Profile = () => {
               Edit Profile
             </button>
           )}
-          <button className="pp-btn logout-btn">Logout</button>
+          <button
+            className="pp-btn logout-btn"
+            onClick={() => {
+              dispatch(logout());
+              window.location.href = "/login";
+            }}
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>

@@ -12,12 +12,54 @@ const ProductCard = ({ product, onAddToCart, onAddToFavourite }) => {
 
   if (!product) return null;
 
+  // 🔥 Handle image URL - could be from backend API (/uploads/...) or static JSON (image property)
+  // const getImageUrl = () => {
+  //   if (product.imageUrl) {
+  //     // If imageUrl starts with /, it's a relative path from backend
+  //     if (product.imageUrl.startsWith("/")) {
+  //       return `http://localhost:8080${product.imageUrl}`;
+  //     }
+  //     // If it's a full URL, return as is
+  //     if (product.imageUrl.startsWith("http")) {
+  //       return product.imageUrl;
+  //     }
+  //     // If it's base64 data URL
+  //     if (product.imageUrl.startsWith("data:")) {
+  //       return product.imageUrl;
+  //     }
+  //   }
+  //   // Fallback to image property from static JSON
+  //   return product.image || defaultImg;
+  // };
+  const getImageUrl = () => {
+    if (!product) return defaultImg;
+
+    const img = product.imageUrl || product.image || "";
+
+    // base64
+    if (img.startsWith("data:")) return img;
+
+    // full url
+    if (img.startsWith("http")) return img;
+
+    // relative backend path
+    if (img) return `http://localhost:8080/${img.replace(/^\/+/, "")}`;
+
+    return defaultImg;
+  };
+
+  console.log("PRODUCT IMAGE DEBUG 👉", {
+    imageUrl: product?.imageUrl,
+    image: product?.image,
+    finalUrl: getImageUrl(),
+  });
+
   return (
     <div className="pcard-container">
       {/* IMAGE */}
       <div className="pcard-img-box">
         <img
-          src={product.image || defaultImg}
+          src={getImageUrl()}
           alt={product.name || product.title}
           loading="lazy"
           onError={(e) =>
