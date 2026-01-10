@@ -7,7 +7,7 @@ import "../style/About.css";
 
 const team = [
   { id: 1, name: "Anjali Tomar", role: "Co-founder & CEO", img: "" },
-  { id: 2, name: "Rohit Verma", role: "Head of Product", img: "" },
+  { id: 2, name: "Himanshuu singh", role: "Head of Product", img: "" },
   { id: 3, name: "Priya Singh", role: "Design Lead", img: "" },
   { id: 4, name: "Amit Kumar", role: "Engineering Lead", img: "" },
 ];

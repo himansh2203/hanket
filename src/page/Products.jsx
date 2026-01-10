@@ -100,10 +100,22 @@ const Products = () => {
   // 🔹 Set category from query AFTER products loaded
   useEffect(() => {
     if (!products.length) return; // wait until products loaded
+
     const categoryFromQuery = searchParams.get("category");
+    const subCategoryFromQuery = searchParams.get("subcategory");
+
     if (categoryFromQuery) {
       setSelectedCategory(categoryFromQuery);
-      setSelectedSubCategory("all");
+
+      // ✅ subcategory bhi URL se set karo
+      if (
+        subCategoryFromQuery &&
+        subCategoryMap[categoryFromQuery]?.includes(subCategoryFromQuery)
+      ) {
+        setSelectedSubCategory(subCategoryFromQuery);
+      } else {
+        setSelectedSubCategory("all");
+      }
     }
   }, [products, searchParams]);
 
