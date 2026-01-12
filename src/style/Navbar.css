@@ -374,3 +374,50 @@
   font-size: 14px;
   font-weight: 600;
 }
+/* Fixed mibile nav subcategory*/
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .nav-hamburger {
+    display: flex;
+    z-index: 2000;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 85%;
+    max-width: 300px;
+    height: 100vh;
+    background: #fff;
+
+    padding: 90px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    transition: left 0.35s ease;
+    z-index: 1500;
+    overflow-y: auto;
+  }
+
+  .nav-links.nav-open {
+    left: 0;
+  }
+
+  .nav-link {
+    font-size: 16px;
+  }
+}
+.dropdown-menu {
+  position: static;
+  box-shadow: none;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  padding-left: 10px;
+}
