@@ -107,6 +107,57 @@
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
+
+/* ================================================= */
+/* ===== NAV ITEMS ALIGNMENT FIX (MENS/WOMENS/KIDS) */
+/* ================================================= */
+
+/* Nav wrapper center */
+.wm-nav {
+  display: flex;
+  align-items: center;
+}
+
+/* Dropdown parent */
+.wm-nav .dropdown {
+  display: flex;
+  align-items: center;
+}
+
+/* Text + arrow alignment */
+.wm-nav .dropdown span,
+.wm-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1;
+}
+
+/* Arrow icon fix */
+.wm-nav svg,
+.wm-nav i {
+  position: relative;
+  top: 1px;
+}
+/* ================================================= */
+/* ===== DROPDOWN UNDER PARENT FIX ================= */
+/* ================================================= */
+
+/* Dropdown parent ko anchor banao */
+.wm-nav .dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Dropdown menu exact niche aaye */
+.wm-nav .dropdown-menu {
+  top: calc(100% + 12px);
+  left: 0;
+  min-width: 220px;
+  z-index: 1200;
+}
+
 /* ================================================================= */
 /* ======================= TABLET RESPONSIVE ======================= */
 /* ================================================================= */
@@ -350,7 +401,7 @@
   }
 
   .mobile-bottom-nav {
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -374,50 +425,119 @@
   font-size: 14px;
   font-weight: 600;
 }
-/* Fixed mibile nav subcategory*/
-@media (max-width: 768px) {
+/* ===================================================== */
+/* ============ SAFE MOBILE ACCORDION FIX ============== */
+/* ===================================================== */
 
-  body {
-    overflow-x: hidden;
+@media (max-width: 992px) {
+
+  /* Disable hover based dropdown on mobile only */
+  .dropdown:hover .dropdown-menu {
+    opacity: unset;
+    visibility: unset;
+    transform: unset;
   }
 
-  .nav-hamburger {
+  /* Dropdown container spacing */
+  .wm-nav .dropdown {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  /* Parent title */
+  .wm-nav .dropdown-title {
+    width: 100%;
     display: flex;
-    z-index: 2000;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
   }
 
-  .nav-links {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 85%;
-    max-width: 300px;
-    height: 100vh;
-    background: #fff;
-
-    padding: 90px 20px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    transition: left 0.35s ease;
-    z-index: 1500;
-    overflow-y: auto;
+  /* Dropdown menu becomes part of flow */
+  .wm-nav .dropdown-menu {
+    position: static;
+    background: transparent;
+    box-shadow: none;
+    padding: 8px 0 0 14px;
+    margin-top: 6px;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
   }
 
-  .nav-links.nav-open {
-    left: 0;
+  /* Show accordion */
+  .wm-nav .dropdown-menu.show {
+    display: block;
+    animation: mobileSlideDown 0.25s ease;
   }
 
-  .nav-link {
-    font-size: 16px;
+  /* Subcategory links */
+  .wm-nav .dropdown-menu a {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 0;
+    color: #555;
+    border-left: 2px solid transparent;
+    transition: all 0.25s ease;
+  }
+
+  .wm-nav .dropdown-menu a:hover {
+    color: #b1976b;
+    border-left: 2px solid #b1976b;
+    padding-left: 8px;
+  }
+
+  /* Arrow rotation */
+  .wm-nav .rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
   }
 }
-.dropdown-menu {
-  position: static;
-  box-shadow: none;
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  padding-left: 10px;
+
+/* Smooth open animation */
+@keyframes mobileSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ================================================= */
+/* ===== MOBILE DROPDOWN BREAK FIX ================= */
+/* ================================================= */
+
+@media (max-width: 992px) {
+
+  /* Parent normal flow me */
+  .wm-nav .dropdown {
+    position: static;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Dropdown menu mobile accordion ban jaye */
+  .wm-nav .dropdown-menu {
+    position: static;
+    width: 100%;
+    min-width: unset;
+    margin-top: 8px;
+    padding-left: 12px;
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    display: none;
+  }
+
+  /* Jab open ho */
+  .wm-nav .dropdown-menu.show {
+    display: block;
+  }
 }
