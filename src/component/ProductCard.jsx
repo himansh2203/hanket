@@ -3,6 +3,7 @@ import "../style/ProductCard.css";
 import { FaStar, FaShoppingCart, FaHeart } from "react-icons/fa";
 import defaultImg from "../assets/hanket_image.ico";
 import { useSelector } from "react-redux";
+import API_BASE_URL from "../config/apiConfig.js";
 
 const ProductCard = ({ product, onAddToCart, onAddToFavourite }) => {
   const wishlistItems = useSelector((state) => state.wishlist.items);
@@ -43,7 +44,7 @@ const ProductCard = ({ product, onAddToCart, onAddToFavourite }) => {
     if (img.startsWith("http")) return img;
 
     // relative backend path
-    if (img) return `http://localhost:8080/${img.replace(/^\/+/, "")}`;
+    if (img) return `${API_BASE_URL}/${img.replace(/^\/+/, "")}`;
 
     return defaultImg;
   };

@@ -1,30 +1,18 @@
-﻿const ADMIN_API = "http://localhost:8080/api/admin";
-const PRODUCT_API = "http://localhost:8080/api/products"; // Use public API endpoint for JSON requests
-const API_URL = "http://localhost:8080/api/products";
+﻿import API_BASE_URL from "../config/apiConfig";
+import FRONTEND_BASE_URL from "../config/frontendConfig";
+
+const ADMIN_API = `${API_BASE_URL}/api/admin`;
+const PRODUCT_API = `${API_BASE_URL}/api/admin/products`;
+const API_URL = `${API_BASE_URL}/api/products`;
 
 // Demo mode - when backend is unavailable, use localStorage
 // NOTE: Set to `false` only when your backend is running and tested.
 // Keeping `true` helps during submission when backend may be offline.
-export const DEMO_MODE = false; // Set to false to use real backend
+export const DEMO_MODE = false; // Set to false when real backend is ready
 
-const authHeader = () => {
-  const token = localStorage.getItem("token");
-  const headers = { "Content-Type": "application/json" };
-  if (token) headers.Authorization = `Bearer ${token}`;
-  return headers;
-};
-
-// If an `admin` session exists but no token was saved (demo/admin login),
-// create a short-lived demo token so admin API calls succeed in the demo.
-const ensureDemoTokenFromAdmin = () => {
-  if (!localStorage.getItem("token") && localStorage.getItem("admin")) {
-    localStorage.setItem("token", "demo-admin-token");
-  }
-};
-
-const fetchOptions = (options = {}) => ({
-  ...options,
-  credentials: "include",
+const authHeader = () => ({
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
 });
 
 /**
@@ -89,7 +77,7 @@ const safeJsonParse = async (res) => {
 const safeFetch = async (url, options = {}) => {
   try {
     console.log(`[API] ${options.method || "GET"} ${url}`);
-    const res = await fetch(url, fetchOptions(options));
+    const res = await fetch(url, options);
 
     if (!res.ok) {
       const data = await safeJsonParse(res);
@@ -112,7 +100,7 @@ const safeFetch = async (url, options = {}) => {
         err.message.includes("Failed to fetch"))
     ) {
       throw new Error(
-        `Network error: Failed to fetch. Is the backend running at http://localhost:8080 and allowing CORS from http://localhost:5173? Original: ${
+        `Network error: Failed to fetch. Is the backend running at ${API_BASE_URL} and allowing CORS from ${FRONTEND_BASE_URL}? Original: ${
           err.message || err
         }`
       );
@@ -129,14 +117,11 @@ export const isBackendAvailable = async (timeoutMs = 2500) => {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const res = await fetch(
-      PRODUCT_API,
-      fetchOptions({
-        method: "GET",
-        headers: authHeader(),
-        signal: controller.signal,
-      })
-    );
+    const res = await fetch(PRODUCT_API, {
+      method: "GET",
+      headers: authHeader(),
+      signal: controller.signal,
+    });
     clearTimeout(id);
     if (!res.ok)
       return { ok: false, status: res.status, message: res.statusText };
@@ -154,7 +139,6 @@ export const isBackendAvailable = async (timeoutMs = 2500) => {
 ===================== */
 export const getStats = async () => {
   try {
-    ensureDemoTokenFromAdmin();
     const data = await safeFetch(`${ADMIN_API}/stats`, {
       headers: authHeader(),
     });
@@ -167,7 +151,6 @@ export const getStats = async () => {
 
 export const getOrders = async () => {
   try {
-    ensureDemoTokenFromAdmin();
     const data = await safeFetch(`${ADMIN_API}/orders`, {
       headers: authHeader(),
     });
@@ -183,7 +166,6 @@ export const getOrders = async () => {
 ===================== */
 export const getProducts = async () => {
   try {
-    ensureDemoTokenFromAdmin();
     const data = await safeFetch(PRODUCT_API, { headers: authHeader() });
     return Array.isArray(data) ? data : [];
   } catch (err) {
@@ -198,59 +180,11 @@ export const getProducts = async () => {
 export const addProduct = async (product) => {
   try {
     console.debug("[API] Adding product:", product);
-    // Ensure demo token exists when admin signed in via the local admin login
-    ensureDemoTokenFromAdmin();
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-      throw new Error(
-        "Unauthorized: missing token. Please login as admin before adding products."
-      );
-    }
-
-    // Use FormData for file upload instead of JSON
-    const formData = new FormData();
-
-    // Add product JSON
-    const productData = {
-      name: product.name,
-      category: product.category,
-      subcategory: product.subcategory,
-      description: product.description,
-      price: product.price,
-      rating: product.rating,
-    };
-    formData.append("product", JSON.stringify(productData));
-
-    // Add image file if it exists
-    if (product.image instanceof File) {
-      formData.append("image", product.image);
-    }
-
-    // Use fetch directly without safeFetch for FormData
-    const res = await fetch(
-      `${ADMIN_API}/products`,
-      fetchOptions({
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: formData,
-      })
-    );
-
-    if (!res.ok) {
-      const errorData = await safeJsonParse(res);
-      const msg = errorData?.message || `HTTP ${res.status}`;
-      if (res.status === 403) {
-        throw new Error(
-          `Forbidden: ${msg} — your token may be invalid or you lack permissions.`
-        );
-      }
-      throw new Error(msg);
-    }
-
-    const data = await safeJsonParse(res);
+    const data = await safeFetch(PRODUCT_API, {
+      method: "POST",
+      headers: authHeader(),
+      body: JSON.stringify(product),
+    });
     return data || { success: true };
   } catch (err) {
     console.error("[API] addProduct failed:", err.message);
@@ -271,60 +205,11 @@ export const addProduct = async (product) => {
 export const updateProduct = async (id, product) => {
   try {
     console.debug("[API] Updating product:", id, product);
-
-    // Ensure demo token exists when admin signed in via the local admin login
-    ensureDemoTokenFromAdmin();
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-      throw new Error(
-        "Unauthorized: missing token. Please login as admin before updating products."
-      );
-    }
-
-    // Use FormData for file upload instead of JSON
-    const formData = new FormData();
-
-    // Add product JSON
-    const productData = {
-      name: product.name,
-      category: product.category,
-      subcategory: product.subcategory,
-      description: product.description,
-      price: product.price,
-      rating: product.rating,
-    };
-    formData.append("product", JSON.stringify(productData));
-
-    // Add image file if it exists
-    if (product.image instanceof File) {
-      formData.append("image", product.image);
-    }
-
-    // Use fetch directly without safeFetch for FormData
-    const res = await fetch(
-      `${ADMIN_API}/products/${id}`,
-      fetchOptions({
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: formData,
-      })
-    );
-
-    if (!res.ok) {
-      const errorData = await safeJsonParse(res);
-      const msg = errorData?.message || `HTTP ${res.status}`;
-      if (res.status === 403) {
-        throw new Error(
-          `Forbidden: ${msg} — your token may be invalid or you lack permissions.`
-        );
-      }
-      throw new Error(msg);
-    }
-
-    const data = await safeJsonParse(res);
+    const data = await safeFetch(`${PRODUCT_API}/${id}`, {
+      method: "PUT",
+      headers: authHeader(),
+      body: JSON.stringify(product),
+    });
     return data || { success: true };
   } catch (err) {
     console.error("[API] updateProduct failed:", err.message);
@@ -345,7 +230,6 @@ export const updateProduct = async (id, product) => {
 export const deleteProduct = async (id) => {
   try {
     console.debug("[API] Deleting product:", id);
-    ensureDemoTokenFromAdmin();
     const data = await safeFetch(`${PRODUCT_API}/${id}`, {
       method: "DELETE",
       headers: authHeader(),

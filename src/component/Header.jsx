@@ -3,6 +3,7 @@ import "../style/Header.css";
 import logo from "../assets/hanket_image.ico";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle, FaShoppingCart, FaSearch } from "react-icons/fa";
+import API_BASE_URL from "../config/apiConfig.js";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ const Header = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:8080/search/suggestions?query=${encodeURIComponent(
+        `${API_BASE_URL}/search/suggestions?query=${encodeURIComponent(
           query
         )}&limit=10`
       );

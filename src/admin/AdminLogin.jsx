@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Admin.css";
+import API_BASE_URL from "../config/apiConfig.js";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function AdminLogin() {
     try {
       // First, try to authenticate with the real backend
       console.log("[AdminLogin] Attempting backend login...");
-      const backendRes = await fetch("http://localhost:8080/api/auth/login", {
+      const backendRes = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: email, password }),

@@ -6,6 +6,7 @@ import {
   updateProduct,
   DEMO_MODE,
 } from "./adminApi";
+import API_BASE_URL from "../config/apiConfig.js";
 
 const subCategoryMap = {
   mens: [
@@ -351,7 +352,7 @@ export default function Products() {
                   <img
                     src={
                       p.imageUrl.startsWith("/")
-                        ? `http://localhost:8080${p.imageUrl}`
+                        ? `${API_BASE_URL}${p.imageUrl}`
                         : p.imageUrl
                     }
                     alt={p.name}

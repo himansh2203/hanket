@@ -4,15 +4,21 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #111111;
 }
 
 html, body {
   height: 100%;
   margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 body {
   font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #111111;
 }
 
 /* ROOT */
